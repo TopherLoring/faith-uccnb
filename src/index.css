@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 194 94 52; /* #C25E34 terracotta-500 */
+  --color-secondary: 30 58 95; /* #1E3A5F twilight-500 */
+  --color-sage: 74 107 86; /* #4A6B56 sage-500 */
+  --color-surface: 250 248 245; /* #FAF8F5 cream-100 */
+  --color-surface-card: 255 255 255;
+  --color-text-main: 26 32 44;
+  --color-text-muted: 74 85 104;
+}
+
+.dark {
+  --color-surface: 15 23 42; /* #0F172A slate-900 */
+  --color-surface-card: 30 41 59; /* #1E293B slate-800 */
+  --color-text-main: 241 245 249;
+  --color-text-muted: 148 163 184;
+}
+
+/* Base resets & typography */
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+/* Fluid responsive headings */
+h1, .font-display-hero {
+  font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+h2, .font-display-section {
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+  line-height: 1.2;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-panel {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle hill country mesh gradient */
+.mesh-gradient-bg {
+  background-color: #FAF8F5;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(217, 119, 6, 0.09) 0px, transparent 55%),
+    radial-gradient(at 85% 10%, rgba(194, 94, 52, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(74, 107, 86, 0.07) 0px, transparent 60%),
+    radial-gradient(at 90% 85%, rgba(30, 58, 95, 0.08) 0px, transparent 50%);
+}
+
+.dark .mesh-gradient-bg {
+  background-color: #0F172A;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(217, 119, 6, 0.12) 0px, transparent 55%),
+    radial-gradient(at 85% 10%, rgba(194, 94, 52, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(74, 107, 86, 0.08) 0px, transparent 60%),
+    radial-gradient(at 90% 85%, rgba(30, 58, 95, 0.15) 0px, transparent 50%);
+}
+
+/* UCC Pride comma gradient text & fill */
+.pride-gradient-text {
+  background: linear-gradient(135deg, #E11D48 0%, #D97706 25%, #10B981 50%, #2563EB 75%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Accessibility: Respect OS preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(194, 94, 52, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(194, 94, 52, 0.6);
+}
