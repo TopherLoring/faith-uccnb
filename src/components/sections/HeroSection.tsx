@@ -1,129 +1,136 @@
 import React from 'react';
-import { churchInfo } from '../../data/churchData';
+import { churchInfo, onaDeclaration } from '../../data/churchData';
 import { UCCComma } from '../ui/UCCComma';
 import { Countdown } from '../ui/Countdown';
-import { ViewState } from '../../types';
-import { Calendar, Video, ArrowDown, MapPin, Sparkles, Heart } from 'lucide-react';
+import { Calendar, Video, Heart, ArrowDown, MapPin, Sparkles, Leaf, UtensilsCrossed } from 'lucide-react';
 
 interface HeroSectionProps {
-  onNavigate: (view: ViewState) => void;
+  onScrollTo?: (id: string) => void;
+  onNavigate?: (view: any) => void;
   onOpenZoom: () => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenZoom }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollTo, onNavigate, onOpenZoom }) => {
+  const handleScroll = (id: string) => {
+    if (onScrollTo) {
+      onScrollTo(id);
+    } else if (onNavigate) {
+      onNavigate(id);
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="relative overflow-hidden pt-8 pb-20 sm:pt-14 sm:pb-28">
-      {/* Decorative ambient blurred blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-amber-200/40 via-terracotta-200/30 to-pink-200/20 dark:from-amber-900/20 dark:via-terracotta-900/20 dark:to-purple-900/20 rounded-full blur-3xl -z-10 pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="hero" className="relative w-full pt-8 pb-16 sm:pt-16 sm:pb-24 px-4 sm:px-6 lg:px-12 xl:px-20 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
         
-        {/* Top Badges & Service Countdown */}
+        {/* Top Affirming Identity Banner */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-gray-200/60 dark:border-slate-700/60 text-xs sm:text-sm font-semibold shadow-sm">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-terracotta-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-terracotta-500"></span>
-            </span>
-            <span className="text-gray-700 dark:text-slate-200">
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white dark:bg-slate-800 shadow-sm border border-sand-200 dark:border-slate-700 text-xs sm:text-sm font-semibold">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-twilight-600 dark:text-slate-200">
               Open & Affirming (ONA) Congregation
             </span>
-            <span className="text-gray-300 dark:text-slate-600">•</span>
+            <span className="text-sand-300 dark:text-slate-600">•</span>
             <span className="text-terracotta-600 dark:text-terracotta-400 font-bold">
-              New Braunfels, TX
+              New Braunfels, Texas
             </span>
           </div>
 
           <Countdown onJoinWorship={onOpenZoom} />
         </div>
 
-        {/* Hero Central Header */}
+        {/* Hero Narrative Header */}
         <div className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-3 justify-center mb-2">
+          
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 justify-center">
             <UCCComma size={56} />
-            <div className="text-left">
-              <p className="text-xs uppercase tracking-widest font-bold text-terracotta-600 dark:text-terracotta-400">
+            <div className="text-center sm:text-left">
+              <span className="text-xs uppercase tracking-widest font-bold text-terracotta-600 dark:text-terracotta-400 block">
                 United Church of Christ
-              </p>
-              <p className="text-sm font-serif italic text-gray-600 dark:text-slate-300">
-                &ldquo;Never place a period where God has placed a comma&rdquo;
-              </p>
+              </span>
+              <span className="font-serif italic text-sm text-gray-600 dark:text-slate-300">
+                &ldquo;Never place a period where God has placed a comma.&rdquo;
+              </span>
             </div>
           </div>
 
-          <h1 className="font-serif font-bold text-gray-900 dark:text-white tracking-tight leading-tight">
-            Where Grace Meets You{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-terracotta-500 via-amber-600 to-pink-600">
-              Just As You Are.
+          <h1 className="hero-title text-twilight-600 dark:text-white font-bold">
+            You are Beloved.{' '}
+            <span className="block pride-text">
+              Exactly as you were created.
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Welcome to Faith United Church of Christ. We are an inclusive, progressive Christian community embracing diversity, living out social justice, and celebrating every person's journey.
+          <p className="text-base sm:text-xl text-gray-700 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Welcome to Faith United Church of Christ. We are an openly affirming Christian community in the Texas Hill Country where LGBTQ+ people, seekers with honest questions, and families of every configuration are celebrated as sacred gifts of God.
           </p>
 
-          {/* Quick CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          {/* Action CTAs */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
             <button
-              onClick={() => { onNavigate('plan-visit'); window.scrollTo(0, 0); }}
-              className="px-7 py-3.5 bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2 text-base"
+              onClick={() => handleScroll('visiting')}
+              className="px-6 sm:px-8 py-3.5 sm:py-4 bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 text-sm sm:text-base hover:-translate-y-0.5"
             >
               <Calendar className="w-5 h-5" />
-              <span>Plan Your First Visit</span>
+              <span>Join Us This Sunday at 10 AM</span>
             </button>
 
             <button
-              onClick={() => { onNavigate('worship'); window.scrollTo(0, 0); }}
-              className="px-7 py-3.5 bg-white dark:bg-slate-800 text-gray-800 dark:text-white font-bold rounded-2xl shadow-md hover:shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-cream-50 dark:hover:bg-slate-700 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2 text-base"
+              onClick={onOpenZoom}
+              className="px-6 sm:px-8 py-3.5 sm:py-4 bg-white dark:bg-slate-800 text-twilight-600 dark:text-white font-bold rounded-2xl shadow-sm hover:shadow-md border border-sand-200 dark:border-slate-700 hover:bg-sand-50 dark:hover:bg-slate-700 transition-all duration-200 flex items-center gap-2 text-sm sm:text-base hover:-translate-y-0.5"
             >
-              <Video className="w-5 h-5 text-twilight-500" />
-              <span>Watch Online (10 AM)</span>
+              <Video className="w-5 h-5 text-twilight-500 dark:text-twilight-400" />
+              <span>Watch Online via Zoom</span>
             </button>
 
             <button
-              onClick={() => { onNavigate('about'); window.scrollTo(0, 0); }}
-              className="px-5 py-3.5 text-gray-600 dark:text-slate-300 hover:text-terracotta-600 dark:hover:text-terracotta-400 font-semibold text-base transition-colors flex items-center gap-1.5"
+              onClick={() => handleScroll('affirming')}
+              className="px-5 py-3.5 text-twilight-600 dark:text-slate-300 hover:text-terracotta-600 dark:hover:text-terracotta-400 font-semibold text-sm sm:text-base transition-colors flex items-center gap-1.5"
             >
-              <span>Our Story & Values</span>
+              <Heart className="w-4 h-4 text-pink-500 fill-pink-500" />
+              <span>Our Affirming Covenant</span>
               <span>&rarr;</span>
             </button>
           </div>
 
-          {/* Feature Highlights Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-12 text-left">
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-gray-100 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow">
-              <div className="p-2.5 w-fit rounded-xl bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400 mb-3">
-                <Heart className="w-5 h-5" />
+          {/* Core Pillars Bar */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 sm:pt-12 text-left">
+            <div className="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-sand-200 dark:border-slate-700 shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-300 flex items-center justify-center mb-3">
+                <Heart className="w-5 h-5 fill-pink-500 text-pink-500" />
               </div>
-              <h3 className="font-serif font-bold text-gray-900 dark:text-white text-base">
-                Extravagant Welcome
+              <h3 className="font-serif font-bold text-twilight-600 dark:text-white text-base">
+                Open & Affirming
               </h3>
               <p className="text-xs text-gray-600 dark:text-slate-300 mt-1 leading-relaxed">
-                Open & Affirming. Every sexual orientation, identity, background, and perspective is loved unconditionally.
+                Full celebration of LGBTQ+ members and leaders. Every soul and love is sacred.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-gray-100 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow">
-              <div className="p-2.5 w-fit rounded-xl bg-sage-50 dark:bg-sage-900/30 text-sage-600 dark:text-sage-400 mb-3">
-                <Sparkles className="w-5 h-5" />
+            <div className="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-sand-200 dark:border-slate-700 shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 flex items-center justify-center mb-3">
+                <UtensilsCrossed className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-gray-900 dark:text-white text-base">
-                Action & Justice
+              <h3 className="font-serif font-bold text-twilight-600 dark:text-white text-base">
+                Christ’s Open Table
               </h3>
               <p className="text-xs text-gray-600 dark:text-slate-300 mt-1 leading-relaxed">
-                Active community witness supporting the SOS Food Bank, civil rights, Love Choir, and environmental care.
+                Communion celebrated 1st Sundays. Absolutely everyone is invited to the table.
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-gray-100 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow">
-              <div className="p-2.5 w-fit rounded-xl bg-terracotta-50 dark:bg-terracotta-900/30 text-terracotta-600 dark:text-terracotta-400 mb-3">
-                <MapPin className="w-5 h-5" />
+            <div className="p-5 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-sand-200 dark:border-slate-700 shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center mb-3">
+                <Leaf className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-gray-900 dark:text-white text-base">
-                Texas Hill Country Home
+              <h3 className="font-serif font-bold text-twilight-600 dark:text-white text-base">
+                Action & Hunger Relief
               </h3>
               <p className="text-xs text-gray-600 dark:text-slate-300 mt-1 leading-relaxed">
-                970 Loop 337 in New Braunfels. In-person sanctuary and interactive Zoom worship every Sunday at 10 AM.
+                Fighting hunger with the SOS Food Bank, civil rights, and caring for creation.
               </p>
             </div>
           </div>

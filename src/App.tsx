@@ -5,15 +5,15 @@ import { churchInfo } from './data/churchData';
 // Layout Components
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { FloatingDock } from './components/layout/FloatingDock';
 import { CommandPalette } from './components/layout/CommandPalette';
 
 // Section Components
 import { HeroSection } from './components/sections/HeroSection';
+import { AffirmingSection } from './components/sections/AffirmingSection';
 import { JourneyHub } from './components/sections/JourneyHub';
-import { PlanYourVisit } from './components/sections/PlanYourVisit';
-import { AboutSection } from './components/sections/AboutSection';
+import { VisitingSection } from './components/sections/VisitingSection';
 import { PastorSection } from './components/sections/PastorSection';
+import { AboutSection } from './components/sections/AboutSection';
 import { MinistriesGrid } from './components/sections/MinistriesGrid';
 import { WorshipMedia } from './components/sections/WorshipMedia';
 import { CalendarSection } from './components/sections/CalendarSection';
@@ -22,7 +22,7 @@ import { ContactSection } from './components/sections/ContactSection';
 
 // UI Dialogs
 import { Modal } from './components/ui/Modal';
-import { Video, ExternalLink, Calendar, Heart, ArrowLeft } from 'lucide-react';
+import { Video, ExternalLink } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('home');
@@ -47,10 +47,84 @@ export const App: React.FC = () => {
     }
   }, [darkMode]);
 
-  const handleNavigate = (view: ViewState) => {
-    setCurrentView(view);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Smooth scroll to any section anchor with sticky header offset
+  const handleScrollTo = (id: string) => {
+    const sectionMap: Record<string, string> = {
+      'home': 'hero',
+      'plan-visit': 'visiting',
+      'visiting': 'visiting',
+      'about': 'about',
+      'affirming': 'affirming',
+      'ona': 'affirming',
+      'pastor': 'pastor',
+      'ministries': 'ministries',
+      'worship': 'worship',
+      'calendar': 'calendar',
+      'give': 'give',
+      'contact': 'contact'
+    };
+
+    const targetId = sectionMap[id] || id;
+    if (targetId === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setCurrentView('home');
+      return;
+    }
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: 'smooth'
+      });
+
+      const validViews: ViewState[] = ['home', 'plan-visit', 'about', 'pastor', 'ministries', 'worship', 'calendar', 'give', 'contact'];
+      if (validViews.includes(id as ViewState)) {
+        setCurrentView(id as ViewState);
+      }
+    }
   };
+
+  // Scrollspy via IntersectionObserver to update active navbar link
+  useEffect(() => {
+    const sectionIds: { id: string; view: ViewState }[] = [
+      { id: 'hero', view: 'home' },
+      { id: 'affirming', view: 'about' },
+      { id: 'visiting', view: 'plan-visit' },
+      { id: 'pastor', view: 'pastor' },
+      { id: 'about', view: 'about' },
+      { id: 'ministries', view: 'ministries' },
+      { id: 'worship', view: 'worship' },
+      { id: 'calendar', view: 'calendar' },
+      { id: 'give', view: 'give' },
+      { id: 'contact', view: 'contact' }
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const match = sectionIds.find((s) => s.id === entry.target.id);
+            if (match) {
+              setCurrentView(match.view);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -65% 0px'
+      }
+    );
+
+    sectionIds.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col mesh-gradient-bg text-gray-800 dark:text-slate-100 selection:bg-terracotta-200 dark:selection:bg-terracotta-900 transition-colors duration-300">
@@ -58,114 +132,60 @@ export const App: React.FC = () => {
       {/* Top Sticky Navigation */}
       <Navbar
         currentView={currentView}
-        onNavigate={handleNavigate}
+        onNavigate={handleScrollTo}
         onOpenSearch={() => setCommandPaletteOpen(true)}
         darkMode={darkMode}
         onToggleDarkMode={() => setDarkMode(!darkMode)}
       />
 
-      {/* Main Content Area */}
+      {/* Main Continuous Editorial Flow */}
       <main className="flex-1 pb-16">
-        {currentView === 'home' && (
-          <>
-            <HeroSection
-              onNavigate={handleNavigate}
-              onOpenZoom={() => setZoomModalOpen(true)}
-            />
-            <JourneyHub onNavigate={handleNavigate} />
-            
-            {/* Quick Preview Sections for continuous scroll */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-              
-              {/* Pastor & Sanctuary Snapshot */}
-              <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-3xl p-8 sm:p-12 border border-gray-100 dark:border-slate-700 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
-                <div className="space-y-3 max-w-2xl">
-                  <span className="text-xs uppercase tracking-wider font-bold text-terracotta-600 dark:text-terracotta-400">
-                    A Note From Our Pastor
-                  </span>
-                  <h3 className="font-serif font-bold text-2xl sm:text-3xl text-gray-900 dark:text-white">
-                    Rev. Dr. Carla Cheatham
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-slate-300 leading-relaxed italic">
-                    &ldquo;Faith is not about having all the answers wrapped in a bow. It is about daring to bring our whole, authentic selves—with our questions, hopes, grief, and joy—into sacred community.&rdquo;
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                  <button
-                    onClick={() => handleNavigate('pastor')}
-                    className="px-6 py-3 bg-terracotta-500 hover:bg-terracotta-600 text-white font-bold rounded-2xl shadow-md transition-colors text-sm text-center"
-                  >
-                    Meet Pastor Carla
-                  </button>
-                  <button
-                    onClick={() => handleNavigate('plan-visit')}
-                    className="px-6 py-3 bg-cream-200 dark:bg-slate-700 text-gray-800 dark:text-white font-bold rounded-2xl hover:bg-cream-300 dark:hover:bg-slate-600 transition-colors text-sm text-center"
-                  >
-                    Visitor Guide
-                  </button>
-                </div>
-              </div>
+        {/* 1. Hero Section with countdown, UCC comma, and Sunday details */}
+        <HeroSection
+          onScrollTo={handleScrollTo}
+          onNavigate={handleScrollTo}
+          onOpenZoom={() => setZoomModalOpen(true)}
+        />
 
-            </div>
-          </>
-        )}
+        {/* 2. Open & Affirming Covenant - Prominently featured right after Hero */}
+        <AffirmingSection />
 
-        {/* Dedicated Deep Dive Views */}
-        {currentView !== 'home' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-            {/* Breadcrumb / Back Navigation */}
-            <div className="flex items-center gap-2 mb-6 text-sm">
-              <button
-                onClick={() => handleNavigate('home')}
-                className="inline-flex items-center gap-1.5 text-gray-500 dark:text-slate-400 hover:text-terracotta-600 dark:hover:text-terracotta-400 font-semibold transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to Home</span>
-              </button>
-              <span className="text-gray-300 dark:text-slate-600">/</span>
-              <span className="text-terracotta-600 dark:text-terracotta-400 font-bold capitalize">
-                {currentView.replace('-', ' ')}
-              </span>
-            </div>
+        {/* 3. Community Connection Hub - Quick Topic Navigation */}
+        <JourneyHub onNavigate={handleScrollTo} />
 
-            {currentView === 'plan-visit' && (
-              <PlanYourVisit
-                onOpenContact={() => handleNavigate('contact')}
-                onOpenZoom={() => setZoomModalOpen(true)}
-              />
-            )}
-            {currentView === 'about' && <AboutSection />}
-            {currentView === 'pastor' && (
-              <PastorSection onOpenContact={() => handleNavigate('contact')} />
-            )}
-            {currentView === 'ministries' && (
-              <MinistriesGrid onOpenContact={() => handleNavigate('contact')} />
-            )}
-            {currentView === 'worship' && (
-              <WorshipMedia onOpenZoom={() => setZoomModalOpen(true)} />
-            )}
-            {currentView === 'calendar' && <CalendarSection />}
-            {currentView === 'give' && <GivingSection />}
-            {currentView === 'contact' && <ContactSection />}
-          </div>
-        )}
+        {/* 4. What Sunday Morning Feels Like - Practical Visitor Guide & FAQ */}
+        <VisitingSection onOpenZoom={() => setZoomModalOpen(true)} />
+
+        {/* 5. Meet Pastor Carla - Pastoral Care, Hospice Whispers, & Counseling */}
+        <PastorSection onOpenContact={() => handleScrollTo('contact')} />
+
+        {/* 6. Who We Are & What We Believe - Living Comma, Pillars, & 5-Decade Timeline */}
+        <AboutSection />
+
+        {/* 7. Community in Action - SOS Food Bank, Love Choir, Theology on Tap, MLK Alliance */}
+        <MinistriesGrid onOpenContact={() => handleScrollTo('contact')} />
+
+        {/* 8. Worship, Music & Sermons - Hybrid Live Worship & Reflection Archive */}
+        <WorshipMedia onOpenZoom={() => setZoomModalOpen(true)} />
+
+        {/* 9. Gatherings & Fellowship - Community Calendar & Add to Google Calendar */}
+        <CalendarSection />
+
+        {/* 10. Generosity & Stewardship - Secure Giving & Community Impact */}
+        <GivingSection />
+
+        {/* 11. We Are Here With You - Map, Directions, Contact & Prayer Form */}
+        <ContactSection />
       </main>
 
-      {/* Global Persistent Bottom Action Dock */}
-      <FloatingDock
-        currentView={currentView}
-        onNavigate={handleNavigate}
-        onOpenSearch={() => setCommandPaletteOpen(true)}
-      />
-
       {/* Global Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={handleScrollTo} />
 
       {/* Global Command Palette / Search Modal (Ctrl+K) */}
       <CommandPalette
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
-        onNavigate={handleNavigate}
+        onNavigate={handleScrollTo}
       />
 
       {/* Sunday Zoom Livestream Modal */}

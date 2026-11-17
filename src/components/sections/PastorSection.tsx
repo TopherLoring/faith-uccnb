@@ -1,133 +1,124 @@
 import React from 'react';
 import { pastorData, churchInfo } from '../../data/churchData';
-import { BookOpen, Heart, Mail, Phone, Sparkles, MessageSquare, Quote } from 'lucide-react';
+import { BookOpen, Quote, Mail, Phone, Heart, ShieldCheck } from 'lucide-react';
 
 export const PastorSection: React.FC<{ onOpenContact: () => void }> = ({ onOpenContact }) => {
   return (
-    <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      
-      {/* Header */}
-      <div className="text-center max-w-3xl mx-auto">
-        <span className="text-xs uppercase tracking-widest font-bold text-terracotta-600 dark:text-terracotta-400 bg-terracotta-50 dark:bg-terracotta-900/40 px-3 py-1 rounded-full">
-          Pastoral Leadership & Care
-        </span>
-        <h2 className="text-3xl sm:text-5xl font-serif font-bold text-gray-900 dark:text-white mt-3">
-          Meet Pastor Carla
-        </h2>
-        <p className="text-gray-600 dark:text-slate-300 mt-3 text-base sm:text-lg leading-relaxed">
-          Grounded in empathy, trauma-informed care, and progressive Christian theology.
-        </p>
-      </div>
+    <section id="pastor" className="w-full py-16 sm:py-24 px-4 sm:px-6 lg:px-12 xl:px-20 border-t border-sand-200 dark:border-slate-800">
+      <div className="max-w-6xl mx-auto space-y-12">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <span className="text-xs uppercase tracking-widest font-bold text-terracotta-600 dark:text-terracotta-400 bg-terracotta-50 dark:bg-terracotta-900/40 px-3 py-1 rounded-full">
+            Pastoral Care & Presence
+          </span>
+          <h2 className="section-title text-twilight-600 dark:text-white font-bold">
+            Meet Pastor Carla
+          </h2>
+          <p className="text-base sm:text-lg text-gray-700 dark:text-slate-300 leading-relaxed">
+            Leading with compassionate accompaniment, emotional intelligence, and trauma-informed spiritual care.
+          </p>
+        </div>
 
-      {/* Main Bio Showcase Card */}
-      <div className="bg-white dark:bg-slate-800 rounded-3xl border border-gray-100 dark:border-slate-700 shadow-xl overflow-hidden p-6 sm:p-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          {/* Pastor Avatar & Quick Facts (Col 1-5) */}
-          <div className="lg:col-span-5 flex flex-col items-center text-center space-y-5">
-            <div className="relative">
-              {/* Decorative aura */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-terracotta-500 via-amber-500 to-pink-500 rounded-3xl blur-md opacity-30" />
-              
-              <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden bg-cream-200 dark:bg-slate-700 shadow-xl flex items-center justify-center border-4 border-white dark:border-slate-800">
-                {/* Stylized pastoral portrait avatar / placeholder with warm aesthetic */}
-                <div className="w-full h-full bg-gradient-to-br from-terracotta-400 via-amber-600 to-twilight-600 flex flex-col items-center justify-center text-white p-6">
-                  <BookOpen className="w-16 h-16 mb-2 opacity-90" />
-                  <span className="font-serif font-bold text-lg text-center">
+        {/* Narrative Card */}
+        <div className="bg-white dark:bg-slate-800 rounded-3xl border border-sand-200 dark:border-slate-700 shadow-md p-6 sm:p-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Avatar & Identity */}
+            <div className="lg:col-span-5 flex flex-col items-center text-center space-y-4">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden bg-sand-100 dark:bg-slate-700 border-4 border-sand-200 dark:border-slate-600 shadow-lg flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-terracotta-500 via-amber-600 to-twilight-600 flex flex-col items-center justify-center text-white p-6">
+                  <BookOpen className="w-14 h-14 mb-2 opacity-90" />
+                  <span className="font-serif font-bold text-lg leading-tight">
                     Rev. Dr. Carla Cheatham
                   </span>
-                  <span className="text-xs font-mono uppercase tracking-wider opacity-80 mt-1">
+                  <span className="text-xs uppercase tracking-wider opacity-85 mt-1 font-mono">
                     Pastor & Teacher
                   </span>
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-1">
-              <h3 className="font-serif font-bold text-2xl text-gray-900 dark:text-white">
-                {pastorData.name}
-              </h3>
-              <p className="text-sm font-semibold text-terracotta-600 dark:text-terracotta-400">
-                {pastorData.credentials}
-              </p>
-              <p className="text-xs text-gray-500 dark:text-slate-400">
-                Serving Faith UCC since January 2021
-              </p>
-            </div>
+              <div>
+                <h3 className="font-serif font-bold text-xl sm:text-2xl text-twilight-600 dark:text-white">
+                  {pastorData.name}
+                </h3>
+                <p className="text-xs font-semibold text-terracotta-600 dark:text-terracotta-400 mt-0.5">
+                  {pastorData.credentials}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+                  Serving Faith UCC since January 2021
+                </p>
+              </div>
 
-            {/* Quick Contact Buttons */}
-            <div className="pt-2 flex flex-col w-full max-w-xs gap-2">
-              <button
-                onClick={onOpenContact}
-                className="w-full py-2.5 px-4 bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold rounded-xl text-sm shadow-md transition-colors flex items-center justify-center gap-2"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Connect with Pastor Carla</span>
-              </button>
-              <a
-                href={`tel:${churchInfo.contact.phone}`}
-                className="w-full py-2 px-4 bg-cream-200 dark:bg-slate-700 hover:bg-cream-300 dark:hover:bg-slate-600 text-gray-800 dark:text-slate-200 font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-2"
-              >
-                <Phone className="w-3.5 h-3.5 text-terracotta-500" />
-                <span>Call: {churchInfo.contact.phone}</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Detailed Narrative & Accolades (Col 6-12) */}
-          <div className="lg:col-span-7 space-y-6">
-            
-            {/* Pastoral Quote Card */}
-            <div className="p-6 rounded-2xl bg-cream-50 dark:bg-slate-900/60 border border-cream-200 dark:border-slate-700/80 relative">
-              <Quote className="w-8 h-8 text-terracotta-300 dark:text-terracotta-800 absolute top-4 right-4 -z-0 opacity-40" />
-              <p className="font-serif italic text-base sm:text-lg text-gray-800 dark:text-slate-200 leading-relaxed relative z-10">
-                &ldquo;{pastorData.quote}&rdquo;
-              </p>
-            </div>
-
-            {/* Biography text */}
-            <div className="space-y-4 text-gray-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-              <p>
-                Rev. Dr. Carla Cheatham began serving as Pastor and Teacher for Faith United Church of Christ on January 1, 2021. Bringing a unique blend of theological depth, emotional intelligence, and trauma counseling expertise, Pastor Carla is dedicated to nurturing a sanctuary where questions are honored and every person is treated as sacred.
-              </p>
-              <p>
-                She holds a Master of Divinity (M.Div.) from Southern Methodist University’s Perkins School of Theology, a Ph.D. in Health and Kinesiology from Texas A&M University (specializing in spirituality and wellness), and a Master’s degree in Psychology with certification in trauma therapy.
-              </p>
-              <p>
-                Prior to her call at Faith UCC, Pastor Carla directed an interfaith worker justice non-profit, served for a decade as a hospice chaplain and bereavement coordinator in Austin, and founded a national consulting group training healthcare, palliative, and mental health professionals in resilience and grief support.
-              </p>
-            </div>
-
-            {/* Published Books & Highlights */}
-            <div className="pt-4 border-t border-gray-100 dark:border-slate-700">
-              <h4 className="text-xs uppercase tracking-wider font-bold text-gray-400 dark:text-slate-400 mb-3">
-                Publications & Specializations
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-100 dark:border-slate-700">
-                  <span className="font-bold text-gray-900 dark:text-white block">
-                    📖 Hospice Whispers: Stories of Life
-                  </span>
-                  <span className="text-gray-500 dark:text-slate-400">
-                    A bestselling collection of true stories on compassion and living fully.
-                  </span>
-                </div>
-                <div className="p-3 rounded-xl bg-gray-50 dark:bg-slate-700/40 border border-gray-100 dark:border-slate-700">
-                  <span className="font-bold text-gray-900 dark:text-white block">
-                    🕊️ Grief & Trauma Ministry
-                  </span>
-                  <span className="text-gray-500 dark:text-slate-400">
-                    Trauma-informed spiritual care and bereavement support circles.
-                  </span>
-                </div>
+              <div className="w-full max-w-xs space-y-2 pt-2">
+                <button
+                  onClick={onOpenContact}
+                  className="w-full py-2.5 px-4 bg-terracotta-500 hover:bg-terracotta-600 text-white rounded-xl text-xs sm:text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Send a Pastoral Note or Prayer</span>
+                </button>
+                <a
+                  href={`tel:${churchInfo.contact.phone}`}
+                  className="w-full py-2 px-4 bg-sand-100 dark:bg-slate-700 text-twilight-600 dark:text-slate-200 rounded-xl text-xs font-semibold hover:bg-sand-200 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Phone className="w-3.5 h-3.5 text-terracotta-500" />
+                  <span>(830) 625-6761</span>
+                </a>
               </div>
             </div>
 
+            {/* Right Narrative */}
+            <div className="lg:col-span-7 space-y-5">
+              
+              {/* Pastoral Quote */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-sand-50 dark:bg-slate-900 border border-sand-200 dark:border-slate-800 relative">
+                <Quote className="w-7 h-7 text-sand-300 dark:text-slate-700 absolute top-4 right-4" />
+                <p className="font-serif italic text-base sm:text-lg text-twilight-600 dark:text-slate-200 leading-relaxed">
+                  &ldquo;{pastorData.quote}&rdquo;
+                </p>
+              </div>
+
+              <div className="space-y-3.5 text-sm sm:text-base text-gray-700 dark:text-slate-300 leading-relaxed">
+                <p>
+                  Rev. Dr. Carla Cheatham has served as Pastor and Teacher of Faith UCC since January 1, 2021. Bringing a unique blend of pastoral theology, emotional intelligence, and trauma counseling expertise, Pastor Carla is dedicated to nurturing a sanctuary where questions are honored and every person is treated as sacred.
+                </p>
+                <p>
+                  She holds a Master of Divinity from Perkins School of Theology at Southern Methodist University, a Ph.D. in Health & Kinesiology from Texas A&M University (specializing in spirituality and health), and a Master’s degree in Psychology with certification in trauma therapy.
+                </p>
+                <p>
+                  Prior to her call to Faith UCC, Pastor Carla directed an interfaith worker justice coalition, served ten years as a hospice chaplain and bereavement coordinator in Austin, and founded a national consulting group training healthcare professionals in resilience, grief, and healthy boundaries. She is the author of <em>Hospice Whispers: Stories of Life</em> and <em>Sharing Our Stories: An Interactive Grief Journal</em>.
+                </p>
+              </div>
+
+              {/* Specializations Bar */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
+                <div className="p-3 rounded-xl bg-sand-50 dark:bg-slate-900 border border-sand-200 dark:border-slate-800">
+                  <div className="flex items-center gap-1.5 font-bold text-twilight-600 dark:text-white mb-0.5">
+                    <BookOpen className="w-3.5 h-3.5 text-terracotta-500 shrink-0" />
+                    <span>Hospice Whispers</span>
+                  </div>
+                  <span className="text-gray-600 dark:text-slate-400">
+                    Bestselling author exploring compassionate presence and living life fully.
+                  </span>
+                </div>
+                <div className="p-3 rounded-xl bg-sand-50 dark:bg-slate-900 border border-sand-200 dark:border-slate-800">
+                  <div className="flex items-center gap-1.5 font-bold text-twilight-600 dark:text-white mb-0.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-sage-600 shrink-0" />
+                    <span>Trauma-Informed Pastoral Care</span>
+                  </div>
+                  <span className="text-gray-600 dark:text-slate-400">
+                    Safe, confidential accompaniment for grief, life transitions, and healing.
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
           </div>
-
         </div>
-      </div>
 
-    </div>
+      </div>
+    </section>
   );
 };

@@ -1,11 +1,11 @@
 import React from 'react';
-import { historyMilestones, onaStatement } from '../../data/churchData';
+import { sanctuaryMilestones, onaDeclaration } from '../../data/churchData';
 import { UCCComma } from '../ui/UCCComma';
 import { Heart, Sparkles, BookOpen, Compass, ShieldCheck } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   return (
-    <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+    <section id="about" className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
       
       {/* Intro Header */}
       <div className="text-center max-w-3xl mx-auto">
@@ -48,21 +48,25 @@ export const AboutSection: React.FC = () => {
             </h3>
 
             <p className="text-gray-700 dark:text-slate-200 text-base leading-relaxed">
-              {onaStatement}
+              {onaDeclaration.covenantText}
             </p>
 
             <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-bold text-gray-600 dark:text-slate-300">
-              <span className="px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
-                🏳️‍🌈 LGBTQ+ Affirming
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
+                <Heart className="w-3.5 h-3.5 text-pink-500" />
+                <span>LGBTQ+ Affirming</span>
               </span>
-              <span className="px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
-                ✨ Doubts & Questions Welcome
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                <span>Doubts & Questions Welcome</span>
               </span>
-              <span className="px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
-                🕊️ Anti-Racist & Inclusive
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
+                <ShieldCheck className="w-3.5 h-3.5 text-sage-600" />
+                <span>Anti-Racist & Inclusive</span>
               </span>
-              <span className="px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
-                🌱 Creation Care & Justice
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-xl shadow-xs border border-gray-100 dark:border-slate-700">
+                <Compass className="w-3.5 h-3.5 text-twilight-500" />
+                <span>Creation Care & Justice</span>
               </span>
             </div>
           </div>
@@ -135,7 +139,7 @@ export const AboutSection: React.FC = () => {
         </div>
 
         <div className="relative border-l-2 border-terracotta-200 dark:border-slate-700 ml-4 sm:ml-8 pl-6 sm:pl-8 space-y-10">
-          {historyMilestones.map((milestone, idx) => (
+          {sanctuaryMilestones.map((milestone: { year: string; title: string; detail: string }, idx: number) => (
             <div key={idx} className="relative group">
               {/* Dot on timeline */}
               <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-slate-800 border-4 border-terracotta-500 group-hover:scale-125 transition-transform" />
@@ -148,7 +152,7 @@ export const AboutSection: React.FC = () => {
                   {milestone.title}
                 </h4>
                 <p className="text-sm text-gray-600 dark:text-slate-300 mt-1 leading-relaxed max-w-3xl">
-                  {milestone.description}
+                  {milestone.detail}
                 </p>
               </div>
             </div>
@@ -156,6 +160,6 @@ export const AboutSection: React.FC = () => {
         </div>
       </div>
 
-    </div>
+    </section>
   );
 };

@@ -33,7 +33,7 @@ export const GivingSection: React.FC = () => {
   ];
 
   return (
-    <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section id="give" className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto">
@@ -161,6 +161,6 @@ export const GivingSection: React.FC = () => {
         </div>
       </div>
 
-    </div>
+    </section>
   );
 };

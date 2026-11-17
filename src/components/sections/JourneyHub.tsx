@@ -80,7 +80,7 @@ export const JourneyHub: React.FC<{ onNavigate: (viewId: ViewState) => void }> =
   ];
 
   const filterTags = [
-    { id: 'all', label: 'All Pathways' },
+    { id: 'all', label: 'All Areas' },
     { id: 'new', label: 'New Here' },
     { id: 'belonging', label: 'Inclusion & ONA' },
     { id: 'action', label: 'Social Action' },
@@ -97,13 +97,13 @@ export const JourneyHub: React.FC<{ onNavigate: (viewId: ViewState) => void }> =
     <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center max-w-3xl mx-auto mb-10">
         <span className="text-xs uppercase tracking-widest font-bold text-terracotta-600 dark:text-terracotta-400 bg-terracotta-50 dark:bg-terracotta-900/40 px-3 py-1 rounded-full">
-          Non-Linear Discovery
+          Ways to Connect
         </span>
         <h2 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 dark:text-white mt-3">
           How Can We Walk Beside You?
         </h2>
         <p className="text-gray-600 dark:text-slate-300 mt-3 text-base sm:text-lg leading-relaxed">
-          We believe spiritual journeys aren't one-size-fits-all. Choose the intention that speaks directly to where your heart is today.
+          We believe spiritual journeys aren't one-size-fits-all. Explore the path that speaks directly to where your heart is today.
         </p>
 
         {/* Filter Pills */}
@@ -129,7 +129,22 @@ export const JourneyHub: React.FC<{ onNavigate: (viewId: ViewState) => void }> =
         {filtered.map((item) => (
           <div
             key={item.id}
-            onClick={() => { onNavigate(item.targetView); window.scrollTo(0, 0); }}
+            onClick={() => { 
+              const anchorMap: Record<string, string> = {
+                'plan-visit': 'visiting',
+                'about': 'affirming',
+                'ministries': 'ministries',
+                'calendar': 'calendar',
+                'worship': 'worship',
+                'pastor': 'pastor'
+              };
+              const targetId = anchorMap[item.targetView] || item.targetView;
+              const el = document.getElementById(targetId);
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
+              onNavigate(item.targetView); 
+            }}
             className="group relative bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-6 sm:p-7 rounded-3xl border border-gray-100 dark:border-slate-700/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 cursor-pointer flex flex-col justify-between"
           >
             <div>

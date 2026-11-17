@@ -36,7 +36,7 @@ export const MinistriesGrid: React.FC<{ onOpenContact: () => void }> = ({ onOpen
     : ministriesData.filter(m => m.category === activeCategory);
 
   return (
-    <div className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="ministries" className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto">
@@ -44,7 +44,7 @@ export const MinistriesGrid: React.FC<{ onOpenContact: () => void }> = ({ onOpen
           Hands & Feet of Love
         </span>
         <h2 className="text-3xl sm:text-5xl font-serif font-bold text-gray-900 dark:text-white mt-3">
-          Ministries, Music & Justice
+          Community in Action
         </h2>
         <p className="text-gray-600 dark:text-slate-300 mt-3 text-base sm:text-lg leading-relaxed">
           At Faith UCC, faith isn’t confined to an hour on Sunday morning. We are actively engaged in our city, singing songs of justice, feeding hungry neighbors, and building deep community.
@@ -132,8 +132,11 @@ export const MinistriesGrid: React.FC<{ onOpenContact: () => void }> = ({ onOpen
             </div>
 
             {selectedMinistry.impactHighlight && (
-              <div className="p-4 rounded-2xl bg-sage-50 dark:bg-sage-900/30 border border-sage-200 dark:border-sage-800 text-sm text-sage-900 dark:text-sage-200">
-                <span className="font-bold block mb-1">🌟 Community Impact:</span>
+              <div className="p-4 rounded-2xl bg-sage-50 dark:bg-sage-900/30 border border-sage-200 dark:border-sage-800 text-sm text-sage-900 dark:sage-200">
+                <div className="flex items-center gap-1.5 font-bold mb-1 text-sage-900 dark:text-sage-200">
+                  <Sparkles className="w-4 h-4 text-amber-500" />
+                  <span>Community Impact</span>
+                </div>
                 <span>{selectedMinistry.impactHighlight}</span>
               </div>
             )}
@@ -159,6 +162,6 @@ export const MinistriesGrid: React.FC<{ onOpenContact: () => void }> = ({ onOpen
         </Modal>
       )}
 
-    </div>
+    </section>
   );
 };
