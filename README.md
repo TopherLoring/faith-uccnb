@@ -1,74 +1,39 @@
-# Faith United Church of Christ (New Braunfels, TX) — Website Redesign
+# Faith United Church of Christ — New Braunfels, TX
 
-A redesign of the official web application for [Faith United Church of Christ (Faith UCC)](https://www.faithuccnb.org/) in New Braunfels, Texas.
+A redesign of [faithuccnb.org](https://www.faithuccnb.org/) for Faith UCC, a progressive, Open and Affirming congregation of the United Church of Christ at 970 Loop 337.
 
-Faith UCC is an Open and Affirming (ONA) progressive Christian congregation celebrating the United Church of Christ's **"God Is Still Speaking"** motto:
-> *"Never place a period where God has placed a comma."*
+## Stack
 
----
+Vite + React 18 + TypeScript + Tailwind CSS. No runtime dependencies beyond React and `lucide-react` icons. Static output, deployable to any host.
 
-## ✨ Key Features & Modern UI/UX Advancements
-
-- **Living Comma Brand Motif (`<UCCComma />`)**:
-  - Interactive, subtly breathing UCC comma SVG with rainbow pride gradient celebrating the Still Speaking God and radical welcome.
-- **Non-Linear Navigation & Intent Pathways**:
-  - *Journey Hub ("How Can We Walk Beside You?")*: Direct paths for first-time visitors, seekers of radical inclusion/ONA, justice advocates, community fellowship, and worship/prayer seekers.
-  - *Global Command & Quick-Jump Palette (`Cmd/Ctrl+K`)*: Instant keyboard-accessible spotlight search to hop anywhere in the site.
-  - *Persistent Floating Action Dock*: Thumb-accessible quick bar for Plan a Visit, Watch Online, Realm Giving, and Prayer Request.
-- **Interactive First-Time Visitor Guide ("Plan Your Visit")**:
-  - Multi-step interactive walkthrough: Arriving & Parking on Loop 337, What to Wear (come as you are), Kids & Families, Open Communion (everyone welcome at Christ's table), Coffee Hour, and Zoom hybrid options.
-- **Worship & Media Hub**:
-  - Live Sunday 10:00 AM Central countdown timer with real-time "Happening Now" status indicator.
-  - Embedded video reflection player modal and searchable sermon archive with topic tags.
-  - Direct links to the Sunday Zoom livestream room and official YouTube channel.
-- **Ministries, Music & Justice**:
-  - Highlights the **SOS Food Bank**, **The Love Choir**, **Theology on Tap (ToT)**, **Youth & Family Socials**, **Monthly Game Nights**, **MLK New Braunfels Association**, **Kiva Micro-Lending**, and **Creation Care**.
-- **Generosity & Realm Giving Portal**:
-  - Direct secure link to the church's Realm giving portal (`https://onrealm.org/FaithUnitedChur/give/now`).
-  - Interactive giving impact calculator showing how gifts support food relief, choir music, youth care, and Hill Country ministry.
-- **Leadership & Pastoral Care**:
-  - Comprehensive bio and pastoral reflection from **Rev. Dr. Carla Cheatham** (M.Div., Ph.D., trauma & hospice specialist, author of *Hospice Whispers*).
-- **Responsive Layout & Theme Toggle**:
-  - "Hill Country Daylight" (warm alabaster cream, terracotta, cedar sage, deep twilight blue) and "Dusk" dark mode.
-  - Fluid responsive typography with CSS `clamp()` and container queries.
-  - Full `@media (prefers-reduced-motion: reduce)` accessibility support.
-
----
-
-## 🚀 Getting Started
-
-This project is built with **Bun**, **Vite**, **React 18**, and **Tailwind CSS**.
-
-### Prerequisites
-- [Bun](https://bun.sh/) (v1.0+)
-
-### Installation
 ```bash
-bun install
+bun install      # or npm install
+bun run dev      # http://localhost:3000
+bun run build    # type-check + production build to dist/
+bun run preview  # serve dist/
 ```
 
-### Development Server
-```bash
-bun run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Structure
 
-### Production Build
-```bash
-bun run build
-```
-Generates a static, production-optimized bundle in the `dist/` folder ready for deployment.
+| Path | What it is |
+|---|---|
+| `src/data/site.ts` | **All content.** Contact info, schedule, history, partners, pastor bio, FAQ. Edit here, not in components. |
+| `src/lib/schedule.ts` | Computes the next Sunday, communion Sundays, third Sundays, last Saturdays, and the live "worship is on now" status, in Central time. |
+| `src/lib/router.ts` | Hash routing (`#/visit`, `#/about/history`, …) with View Transitions between pages. |
+| `src/pages/` | Home, Visit, About (ONA, pastor, history), Community (partners, gatherings), Give. |
+| `src/components/` | Header, full-screen menu, footer, ribbon motif, shared building blocks. |
+| `public/photos/` | Congregation photos from faithuccnb.org, resized to WebP. |
 
-### Preview Production Build
-```bash
-bun run preview
-```
+## Content rules
 
----
+Every fact on the site traces to faithuccnb.org (Home, About, ONA Statement, Church History, Mission & Outreach, About our Pastor) or Pastor Carla's published bios. No invented stats, groups, or quotes. When something changes (book group title, Zoom link, pledge form), update `src/data/site.ts`.
 
-## 🏛️ Church Information
-- **Physical Address**: 970 Loop 337, New Braunfels, TX 78130
-- **Phone**: (830) 625-6761
-- **Email**: faithuccinfo@faithuccnb.org
-- **Worship**: Sundays at 10:00 AM CST (In-person & Zoom livestream)
-- **Pastor**: Rev. Dr. Carla Cheatham
+## Motion & accessibility
+
+- Line-by-line headline reveals, scroll-triggered fades, drawn rainbow ribbons (taken from the ribbons strung across the sanctuary rafters), page transitions, a scroll-snap history timeline with filters, an animated full-screen menu with photo previews.
+- Everything respects `prefers-reduced-motion`.
+- Skip link, focus-visible styles, keyboard-trapped menu with Esc to close, `aria-expanded` on accordions, alt text on every photo.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
