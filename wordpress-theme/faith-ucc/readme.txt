@@ -40,11 +40,18 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 - Logo: Faith Church (green "Faith" with the comma, blue cross "t", grey "CHURCH"). The built-in vector version is
   traced from the church's official logo file. Header: Faith / CHURCH. Footer: full lockup with NEW BRAUNFELS, TEXAS.
 - Colors (official logo values): green #5AA761 (text: #3E7443), blue #007FAC (text: #00729A), grey #585858,
-  white #FFFFFF, light grey #EAEAEA (from the current site), forest #3C4E40,
+  white #FFFFFF, light grey #EAEAEA (from the current site; header, menu, footer),
   rainbow from UCC Love Is Louder (#F07474 #F7A660 #FBDE45 #4AB67C #5C74B7 #B585BA), purple #7A3C87.
   The official UCC comma keeps its own colors.
 
 == Changelog ==
+
+= 1.9.0 — 2026-11-17 =
+* Header, Explore menu and footer share the light grey of the "God is still speaking," band; footer flows on from the band.
+* Explore menu items highlight in the soft Love Is Louder colors (color bar and tint).
+* Yellow headings replaced with the logo green; forest green retired.
+* Underlines appear instantly on hover (no slide).
+* Visit page's Zoom band uses the logo blue.
 
 = 1.8.0 — 2026-11-17 =
 * Progress Pride colors on Who we are (Open and Affirming section), as a stripe with a short caption explaining them.

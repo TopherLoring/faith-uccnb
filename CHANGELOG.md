@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.8.0 — 2026-11-17
+
+Theme `faith-ucc` 1.9.0.
+
+### Changed
+- Header bar, Explore menu and footer share the light grey `#EAEAEA` of the "God is still speaking," band; the footer continues the band, separated by a rule.
+- Explore menu items highlight in the soft Love Is Louder colors (left color bar plus a light tint), cycling coral, orange, yellow, green, blue, lavender.
+- Yellow headings replaced with the logo green. Forest green retired from the palette.
+- Underlines appear instantly on hover (no slide-in).
+- Visit page's "Watch from your couch first" band uses the logo blue.
+
 ## 3.7.0 — 2026-11-17
 
 Theme `faith-ucc` 1.8.0.

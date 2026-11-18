@@ -69,7 +69,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .section { margin-top: clamp(6rem, 10vw, 9rem); }
 .band { margin-top: clamp(6rem, 10vw, 9rem); padding-block: clamp(4.5rem, 8vw, 6.5rem); }
 .band-deep { background: var(--paper-deep); }
-.band-moss { background: var(--forest); color: var(--paper); }
+.band-moss { background: var(--blue); color: #fff; }
 
 /* ---------- Type ---------- */
 .display-xl, .display-lg, .display-md { font-family: var(--serif); font-weight: 400; }
@@ -78,7 +78,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .display-md { font-weight: 450; font-variation-settings: "opsz" 72; font-size: clamp(1.5rem, 2.4vw, 2.25rem); line-height: 1.14; letter-spacing: -.015em; }
 .accent { font-style: italic; font-weight: 300; color: var(--green); }
 .eyebrow { font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--green); }
-.eyebrow-light { color: var(--yellow); }
+.eyebrow-light { color: rgba(255, 255, 255, .85); }
 .lede { font-size: clamp(1.125rem, .8vw + .95rem, 1.4rem); line-height: 1.5; color: var(--ink-soft); }
 .lede p + p { margin-top: 1em; }
 .lede-light { color: rgba(255, 255, 255, .82); margin-top: 1.5rem; max-width: 38ch; }
@@ -95,7 +95,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .link-underline {
 	background-image: linear-gradient(currentColor, currentColor);
 	background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat;
-	transition: background-size .4s var(--ease);
 }
 a:hover .link-underline, a:focus-visible .link-underline, .link-underline:hover, .link-underline:focus-visible, .is-current.link-underline { background-size: 100% 1px; }
 
@@ -117,8 +116,8 @@ a:hover > .icon-arrow, button:hover > .icon-arrow { transform: translateX(4px); 
 .btn-primary:hover { background: var(--blue); }
 .btn-ghost { border-color: rgba(46, 46, 46, .25); color: var(--ink); }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.btn-paper { background: var(--paper); color: var(--forest); }
-.btn-paper:hover { background: var(--yellow); color: var(--ink); }
+.btn-paper { background: #fff; color: var(--blue); }
+.btn-paper:hover { background: var(--ink); color: #fff; }
 
 .circle-btn {
 	display: grid; place-items: center; flex: none;
@@ -150,7 +149,7 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 /* ---------- Header ---------- */
 .site-header {
 	position: fixed; inset-inline: 0; top: 0; z-index: 40;
-	background: #fff; color: var(--ink);
+	background: var(--paper-deep); color: var(--ink);
 	box-shadow: 0 1px 0 var(--line);
 	transition: transform .5s var(--ease), background-color .3s, box-shadow .3s;
 }
@@ -173,7 +172,7 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 .wordmark.is-mono .logo-green, .wordmark.is-mono .logo-blue, .wordmark.is-mono .logo-grey { fill: #fff; }
 .nav-primary { display: none; gap: 2rem; }
 .nav-link { --nav-c: var(--ink); padding-block: .3rem; font-size: .95rem; font-weight: 500; color: var(--ink-soft); transition: color .25s;
-	background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .4s var(--ease), color .25s; }
+	background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: color .2s; }
 /* Each section gets its own rainbow colour, shown as the underline on hover and on the current page */
 .nav-visit { --nav-c: #F7A660; }     /* orange: welcome */
 .nav-about { --nav-c: #B585BA; }     /* lavender: Open and Affirming, Love Is Louder */
@@ -219,23 +218,32 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 /* ---------- Menu overlay ---------- */
 .menu-overlay {
 	position: fixed; inset: 0; z-index: 50; overflow-y: auto;
-	background: var(--forest); color: #fff;
+	background: var(--paper-deep); color: var(--ink);
 	clip-path: inset(0 0 100% 0); visibility: hidden;
 	transition: clip-path .75s cubic-bezier(.76, 0, .24, 1), visibility 0s linear .75s;
 }
 .menu-overlay.is-open { clip-path: inset(0 0 0 0); visibility: visible; transition: clip-path .75s cubic-bezier(.76, 0, .24, 1), visibility 0s; }
 .menu-top { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); }
-.menu-close { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(255, 255, 255, .3); border-radius: 999px; padding: .5rem .8rem .5rem 1rem; font-size: .875rem; font-weight: 600; transition: all .3s; }
-.menu-close:hover { background: #fff; color: var(--forest); }
+.menu-close { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(46, 46, 46, .25); border-radius: 999px; padding: .5rem .8rem .5rem 1rem; font-size: .875rem; font-weight: 600; transition: all .3s; }
+.menu-close:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .menu-body { display: grid; gap: 3rem; padding-top: 2rem; padding-bottom: 4rem; }
 @media (min-width: 1024px) { .menu-body { grid-template-columns: 1.25fr 1fr; gap: 5rem; padding-top: 3.5rem; } }
-.menu-list { border-top: 1px solid rgba(255, 255, 255, .15); }
-.menu-list li { border-bottom: 1px solid rgba(255, 255, 255, .15); }
-.menu-list a { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding-block: 1rem; }
+.menu-list { border-top: 1px solid rgba(46, 46, 46, .15); }
+.menu-list li { border-bottom: 1px solid rgba(46, 46, 46, .15); }
+/* Each item highlights in one of the soft Love Is Louder colors */
+.menu-list li:nth-child(6n+1) { --hl: #F07474; }
+.menu-list li:nth-child(6n+2) { --hl: #F7A660; }
+.menu-list li:nth-child(6n+3) { --hl: #FBDE45; }
+.menu-list li:nth-child(6n+4) { --hl: #4AB67C; }
+.menu-list li:nth-child(6n+5) { --hl: #5C74B7; }
+.menu-list li:nth-child(6n+6) { --hl: #B585BA; }
+.menu-list a { position: relative; display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding: 1rem .75rem; margin-inline: -.75rem; border-radius: 4px; }
 @media (min-width: 640px) { .menu-list a { padding-block: 1.15rem; } }
-.menu-label { font-family: var(--serif); font-size: clamp(1.9rem, 4.2vw, 3.2rem); line-height: 1; letter-spacing: -.02em; transition: color .3s, transform .5s var(--ease); }
-.menu-list a:hover .menu-label, .menu-list a:focus-visible .menu-label { color: var(--yellow); transform: translateX(.5rem); }
-.menu-note { display: none; font-size: .875rem; color: rgba(255, 255, 255, .8); text-align: right; }
+.menu-list a::before { content: ""; position: absolute; left: 0; top: .6rem; bottom: .6rem; width: 5px; border-radius: 3px; background: var(--hl); opacity: 0; }
+.menu-list a:hover, .menu-list a:focus-visible { background: color-mix(in srgb, var(--hl) 22%, transparent); }
+.menu-list a:hover::before, .menu-list a:focus-visible::before { opacity: 1; }
+.menu-label { font-family: var(--serif); font-size: clamp(1.9rem, 4.2vw, 3.2rem); line-height: 1; letter-spacing: -.02em; color: var(--ink); }
+.menu-note { display: none; font-size: .875rem; color: var(--ink-mute); text-align: right; }
 @media (min-width: 640px) { .menu-note { display: block; } }
 .menu-item { opacity: 0; transform: translateY(40px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .menu-overlay.is-open .menu-item { opacity: 1; transform: none; transition-delay: calc(.2s + var(--i, 0) * 40ms); }
@@ -247,7 +255,7 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 .menu-info { display: grid; gap: 1.5rem; font-size: .875rem; }
 @media (min-width: 640px) { .menu-info { grid-template-columns: 1fr 1fr; } }
 .menu-info .eyebrow { margin-bottom: .5rem; }
-.menu-zoom { display: inline-block; margin-top: .5rem; color: rgba(255, 255, 255, .8); }
+.menu-zoom { display: inline-block; margin-top: .5rem; color: var(--ink-soft); }
 .menu-info p { margin-top: .25rem; }
 html.menu-locked { overflow: hidden; }
 
@@ -352,7 +360,7 @@ html.menu-locked { overflow: hidden; }
 .post-card .photo img { object-fit: contain; }
 .post-card-link:hover .photo img { transform: scale(1.02); }
 .post-card-fallback { display: grid; place-items: center; background: var(--paper-deep); border-radius: 2px; transition: transform .6s var(--ease); overflow: hidden; }
-.post-card-fallback.tone-1 { background: var(--forest); }
+.post-card-fallback.tone-1 { background: var(--green); }
 .post-card-fallback.tone-2 { background: var(--blue); }
 .post-card-initial { font-family: var(--serif); font-size: 5rem; line-height: 1; color: var(--green); opacity: .5; transition: transform .6s var(--ease), opacity .4s; }
 .tone-1 .post-card-initial, .tone-2 .post-card-initial { color: var(--paper); }
@@ -580,7 +588,7 @@ html.menu-locked { overflow: hidden; }
 .notice { margin-top: 1.5rem; display: inline-block; background: var(--paper-deep); padding: .5rem 1rem; border-radius: 999px; font-size: .875rem; font-weight: 600; }
 
 /* ---------- Footer ---------- */
-.site-footer { position: relative; overflow: hidden; margin-top: clamp(6rem, 10vw, 8rem); background: var(--forest); color: var(--paper); }
+.site-footer { position: relative; overflow: hidden; margin-top: clamp(6rem, 10vw, 8rem); background: var(--paper-deep); color: var(--ink-soft); }
 /* "God is still speaking," band: light grey, the official UCC rainbow comma, tagline in the logo's green and blue */
 .still-speaking { background: var(--paper-deep); color: var(--ink); }
 .still-inner { display: grid; gap: 1.75rem; align-items: center; padding-top: clamp(3.5rem, 6vw, 5rem); padding-bottom: clamp(3.5rem, 6vw, 5rem); }
@@ -593,8 +601,8 @@ html.menu-locked { overflow: hidden; }
 .still-green { color: var(--green); }
 .still-blue { color: var(--blue); }
 .still-cite { margin-top: 1.25rem; max-width: 46ch; font-size: .95rem; color: var(--ink-mute); }
-.footer-inner { position: relative; padding-top: 4rem; padding-bottom: 2.5rem; }
-.footer-grid { display: grid; gap: 3rem; }
+.footer-inner { position: relative; padding-bottom: 2.5rem; }
+.footer-grid { display: grid; gap: 3rem; padding-top: 3.5rem; border-top: 1px solid var(--line); }
 .footer-ucc { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: 3.5rem; padding: 1.25rem 1.5rem; background: var(--paper); color: var(--ink-soft); border-radius: 2px; }
 .ucc-badge img { width: 220px; height: auto; }
 .ona-ucc { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid var(--line); }
@@ -602,10 +610,10 @@ html.menu-locked { overflow: hidden; }
 .ona-ucc .small { max-width: 30ch; }
 @media (min-width: 640px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
-.footer-about { margin-top: 1.25rem; max-width: 20rem; font-size: .875rem; line-height: 1.65; color: rgba(255, 255, 255, .7); }
-.footer-list { display: grid; gap: .4rem; margin-top: .75rem; font-size: .875rem; color: rgba(255, 255, 255, .8); }
-.footer-cta { display: inline-block; margin-top: .75rem; font-size: .875rem; font-weight: 600; }
-.footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .15); font-size: .75rem; color: rgba(255, 255, 255, .55); }
+.footer-about { margin-top: 1.25rem; max-width: 20rem; font-size: .875rem; line-height: 1.65; color: var(--ink-soft); }
+.footer-list { display: grid; gap: .4rem; margin-top: .75rem; font-size: .875rem; color: var(--ink-soft); }
+.footer-cta { display: inline-block; margin-top: .75rem; font-size: .875rem; font-weight: 600; color: var(--blue); }
+.footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .75rem; color: var(--ink-mute); }
 .footer-social { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 
 /* ---------- Motion ---------- */

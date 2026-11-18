@@ -16,7 +16,7 @@ $items = array(
 ?>
 <div id="site-menu" class="menu-overlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true" inert data-menu>
 	<div class="wrap menu-top">
-		<?php get_template_part( 'parts/wordmark', null, array( 'light' => true ) ); ?>
+		<?php get_template_part( 'parts/wordmark' ); ?>
 		<button type="button" class="menu-close" data-menu-close>Close <?php echo faith_icon( 'close' ); // phpcs:ignore ?></button>
 	</div>
 	<div class="wrap menu-body">
@@ -40,12 +40,12 @@ $items = array(
 			</div>
 			<div class="menu-item menu-info" style="--i:<?php echo count( $items ); ?>">
 				<div>
-					<p class="eyebrow eyebrow-light">Sunday</p>
-					<?php get_template_part( 'parts/sunday-status', null, array( 'light' => true ) ); ?>
+					<p class="eyebrow">Sunday</p>
+					<?php get_template_part( 'parts/sunday-status' ); ?>
 					<a class="link-underline menu-zoom" href="<?php echo esc_url( $o['zoom_url'] ); ?>" target="_blank" rel="noopener">Zoom link<?php echo $o['zoom_id'] ? ' · ID ' . esc_html( $o['zoom_id'] ) : ''; ?></a>
 				</div>
 				<div>
-					<p class="eyebrow eyebrow-light">Find us</p>
+					<p class="eyebrow">Find us</p>
 					<a class="link-underline" href="<?php echo esc_url( $o['maps_url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $o['address_line'] ); ?></a>
 					<p><a class="link-underline" href="<?php echo esc_url( $o['phone_href'] ); ?>"><?php echo esc_html( $o['phone'] ); ?></a></p>
 				</div>

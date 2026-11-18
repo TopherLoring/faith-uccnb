@@ -22,12 +22,12 @@ $o = faith_opts();
 
 		<div class="footer-grid">
 			<div>
-				<?php get_template_part( 'parts/wordmark', null, array( 'light' => true, 'full' => true ) ); ?>
+				<?php get_template_part( 'parts/wordmark', null, array( 'full' => true ) ); ?>
 				<p class="footer-about">A progressive, Open and Affirming congregation of the United Church of Christ in New Braunfels since 1966.</p>
 			</div>
 
 			<div>
-				<p class="eyebrow eyebrow-light">Sundays</p>
+				<p class="eyebrow">Sundays</p>
 				<ul class="footer-list">
 					<?php foreach ( faith_get_gatherings() as $g ) : ?>
 						<?php if ( $g['weekly'] ) : ?>
@@ -42,7 +42,7 @@ $o = faith_opts();
 			</div>
 
 			<div>
-				<p class="eyebrow eyebrow-light">Contact</p>
+				<p class="eyebrow">Contact</p>
 				<address class="footer-list">
 					<a class="link-underline" href="<?php echo esc_url( $o['maps_url'] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $o['street'] ); ?><br><?php echo esc_html( $o['city'] . ', ' . $o['state'] . ' ' . $o['zip'] ); ?></a>
 					<a class="link-underline" href="<?php echo esc_url( $o['phone_href'] ); ?>"><?php echo esc_html( $o['phone'] ); ?></a>
@@ -51,7 +51,7 @@ $o = faith_opts();
 			</div>
 
 			<div>
-				<p class="eyebrow eyebrow-light">More</p>
+				<p class="eyebrow">More</p>
 				<ul class="footer-list">
 					<li><a class="link-underline" href="<?php echo esc_url( faith_page_url( 'visit' ) ); ?>">Plan a visit</a></li>
 					<li><a class="link-underline" href="<?php echo esc_url( faith_page_url( 'news' ) ); ?>">News &amp; Glimpses of Faith</a></li>
