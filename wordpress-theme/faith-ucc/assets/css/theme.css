@@ -13,7 +13,7 @@
 	--blue: #00729A;       /* logo blue, deepened for text and buttons (5.4:1 on white) */
 	--blue-logo: #007FAC;  /* logo blue */
 	--forest: #3C4E40;     /* deep green, from the church's flyers */
-	--purple: #7A3D89;     /* UCC "Love Is Louder" */
+	--purple: #7A3C87;     /* UCC Love Is Louder headline purple */
 	--yellow: #FFDE16;     /* UCC rainbow */
 	--red: #E22726;        /* UCC rainbow */
 	--serif: Fraunces, Georgia, serif;
@@ -167,6 +167,7 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 .logo-blue { fill: #007FAC; }
 .logo-grey { fill: #585858; }
 .wordmark.is-light .logo-grey { fill: var(--paper); }
+.wordmark.is-full svg { height: 5.75rem; }
 .wordmark.is-light .logo-green { fill: #7DC283; }
 .wordmark.is-light .logo-blue { fill: #4FB3DA; }
 .wordmark.is-mono .logo-green, .wordmark.is-mono .logo-blue, .wordmark.is-mono .logo-grey { fill: #fff; }
@@ -174,11 +175,11 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 .nav-link { --nav-c: var(--ink); padding-block: .3rem; font-size: .95rem; font-weight: 500; color: var(--ink-soft); transition: color .25s;
 	background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .4s var(--ease), color .25s; }
 /* Each section gets its own rainbow colour, shown as the underline on hover and on the current page */
-.nav-visit { --nav-c: #F26B2A; }     /* orange: welcome */
-.nav-about { --nav-c: #863695; }     /* purple: Open and Affirming, Love Is Louder */
-.nav-community { --nav-c: #0B9444; } /* green: service and creation */
-.nav-news { --nav-c: #0F75BC; }      /* blue: news */
-.nav-give { --nav-c: #E22726; }      /* red: love */
+.nav-visit { --nav-c: #F7A660; }     /* orange: welcome */
+.nav-about { --nav-c: #B585BA; }     /* lavender: Open and Affirming, Love Is Louder */
+.nav-community { --nav-c: #4AB67C; } /* green: service and creation */
+.nav-news { --nav-c: #5C74B7; }      /* blue: news */
+.nav-give { --nav-c: #F07474; }      /* coral: love */
 .nav-link { background-image: linear-gradient(var(--nav-c), var(--nav-c)); background-size: 0% 3px; }
 .nav-link:hover { color: var(--ink); background-size: 100% 3px; }
 .nav-link.is-current { color: var(--ink); font-weight: 600; background-size: 100% 3px; }

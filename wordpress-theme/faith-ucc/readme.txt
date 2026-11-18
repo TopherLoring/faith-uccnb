@@ -38,12 +38,17 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 == Branding ==
 
 - Logo: Faith Church (green "Faith" with the comma, blue cross "t", grey "CHURCH"). The built-in vector version is
-  traced from the church's own logo. Full color on white in the header; a light version on dark backgrounds.
+  traced from the church's official logo file. Header: Faith / CHURCH. Footer: full lockup with NEW BRAUNFELS, TEXAS.
 - Colors (official logo values): green #5AA761 (text: #3E7443), blue #007FAC (text: #00729A), grey #585858,
   white #FFFFFF, light grey #EAEAEA (from the current site), forest #3C4E40,
-  UCC rainbow (#E22726 #F26B2A #FFDE16 #0B9444 #0F75BC #863695).
+  rainbow from UCC Love Is Louder (#F07474 #F7A660 #FBDE45 #4AB67C #5C74B7 #B585BA), purple #7A3C87.
+  The official UCC comma keeps its own colors.
 
 == Changelog ==
+
+= 1.7.0 — 2026-11-17 =
+* Logo re-traced from the church's official logo file; footer uses the full lockup with NEW BRAUNFELS, TEXAS.
+* Rainbow switched to the UCC Love Is Louder palette (hero ribbons, nav underlines); purple #7A3C87.
 
 = 1.6.0 — 2026-11-17 =
 * Exact logo colors from the church: green #5AA761, blue #007FAC, grey #585858 (previously sampled from screenshots). Text and button shades re-derived from them to stay readable; grays are now neutral instead of blue-tinted.

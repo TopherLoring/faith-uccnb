@@ -127,7 +127,7 @@ function faith_icon( $name ) {
 
 /** The swagged rainbow ribbons, after the ones strung across the sanctuary rafters. */
 function faith_ribbons( $class = '', $sag = 0.6, $stroke = 3 ) {
-	$colors = array( '#E22726', '#F26B2A', '#FFDE16', '#0B9444', '#0F75BC', '#863695' ); // UCC rainbow
+	$colors = array( '#F07474', '#F7A660', '#FBDE45', '#4AB67C', '#5C74B7', '#B585BA' ); // UCC Love Is Louder rainbow
 	$w      = 1200;
 	$out    = '<svg class="ribbons ' . esc_attr( $class ) . '" viewBox="0 0 ' . $w . ' 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">';
 	foreach ( $colors as $i => $c ) {
@@ -149,13 +149,17 @@ function faith_ribbons( $class = '', $sag = 0.6, $stroke = 3 ) {
 	return $out . '</svg>';
 }
 
-/** The church's logo as inline SVG (bundled; traced from the church's own logo). */
-function faith_logo_svg() {
-	static $svg = null;
-	if ( null === $svg ) {
-		$svg = (string) file_get_contents( FAITH_DIR . '/assets/img/faith-logo.svg' ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+/**
+ * The church's official logo as inline SVG (vector traced from the official logo file).
+ * $full = true adds the "NEW BRAUNFELS, TEXAS" line.
+ */
+function faith_logo_svg( $full = false ) {
+	static $svg = array();
+	$file = $full ? 'faith-logo-full.svg' : 'faith-logo.svg';
+	if ( ! isset( $svg[ $file ] ) ) {
+		$svg[ $file ] = (string) file_get_contents( FAITH_DIR . '/assets/img/' . $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions
 	}
-	return $svg;
+	return $svg[ $file ];
 }
 
 /** Turn plain text with blank lines into paragraphs (for settings textareas). */

@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.6.0 — 2026-11-17
+
+Theme `faith-ucc` 1.7.0.
+
+### Changed
+- Logo re-traced from the church's official logo file (sharper source). Header uses Faith / CHURCH; footer uses the full lockup with NEW BRAUNFELS, TEXAS.
+- Rainbow palette set to UCC Love Is Louder, as directed: coral `#F07474`, orange `#F7A660`, yellow `#FBDE45`, green `#4AB67C`, blue `#5C74B7`, lavender `#B585BA`; headline purple `#7A3C87`. Used for the hero ribbons and nav underlines. The official UCC comma keeps its own colors.
+
 ## 3.5.0 — 2026-11-17
 
 Theme `faith-ucc` 1.6.0.

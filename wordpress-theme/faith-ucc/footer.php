@@ -22,7 +22,7 @@ $o = faith_opts();
 
 		<div class="footer-grid">
 			<div>
-				<?php get_template_part( 'parts/wordmark', null, array( 'light' => true ) ); ?>
+				<?php get_template_part( 'parts/wordmark', null, array( 'light' => true, 'full' => true ) ); ?>
 				<p class="footer-about">A progressive, Open and Affirming congregation of the United Church of Christ in New Braunfels since 1966.</p>
 			</div>
 
