@@ -46,6 +46,9 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 == Changelog ==
 
+= 1.11.1 — 2026-11-18 =
+* Fix: Church history entries now have an Order box, so a new entry can be placed in the timeline instead of landing at the top.
+
 = 1.11.0 — 2026-11-18 =
 * New "Rent our space" page: the sanctuary and the Fellowship Hall with photos, prices, deposit, and call/email buttons. Created automatically on update.
 * Church Info → Renting the building: prices, deposit, rental phone and email, and an optional note. A price left blank is hidden.

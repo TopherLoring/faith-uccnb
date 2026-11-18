@@ -112,7 +112,7 @@ add_action( 'init', function () {
 				'public'        => false,
 				'menu_icon'     => 'dashicons-backup',
 				'menu_position' => 6,
-				'supports'      => array( 'title' ),
+				'supports'      => array( 'title', 'page-attributes' ),
 			)
 		)
 	);

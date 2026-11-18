@@ -1,0 +1,21 @@
+FAITH UCC COLORS
+Match these HEX values. CMYK figures are starting points for print shops.
+
+LOGO COLORS
+Logo green     #5AA761   RGB 90 167 97    CMYK 64 0 74 0   Logo, shapes, icons (not small text)
+Logo blue      #007FAC   RGB 0 127 172    CMYK 100 26 0 33 Logo, shapes, bands of color
+Logo grey      #585858   RGB 88 88 88     CMYK 0 0 0 65    "CHURCH" in the logo, body text
+
+TEXT AND BACKGROUNDS
+Text green     #3E7443   RGB 62 116 67    Headlines, links, labels (5.5:1 on white)
+Text blue      #00729A   RGB 0 114 154    Buttons, links, fill-in fields (5.4:1 on white)
+Ink            #2E2E2E   RGB 46 46 46     Headings, dark slide backgrounds
+White          #FFFFFF   RGB 255 255 255  Main background
+Light grey     #EAEAEA   RGB 234 234 234  Panels, header and footer bands
+Accent purple  #7A3C87   RGB 122 60 135   Occasional accent (Love Is Louder purple)
+
+LOVE IS LOUDER RAINBOW (accents only, always in this order)
+Coral #F07474 · Orange #F7A660 · Yellow #FBDE45 · Green #4AB67C · Blue #5C74B7 · Lavender #B585BA
+
+PROGRESS PRIDE (Open and Affirming / Pride content; all eleven, in order)
+#FFFFFF · #F7ACC8 · #7DD2E7 · #684A30 · #282826 · #E23434 · #F78C35 · #F7EB2D · #2D8549 · #4668AF · #7A3989

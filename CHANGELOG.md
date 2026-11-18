@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.11.0 — 2026-11-18
+
+Theme `faith-ucc` 1.11.1, plus the brand kit and the hand-off package for the church.
+
+### Added
+- `brand-kit/`, the Faith UCC Brand Kit 1.0:
+  - `Faith-UCC-Brand-Guidelines.pdf`, 14 pages: voice, logo, logo versions and misuse, UCC mark rules, color, Love Is Louder and Progress Pride palettes, pride logos and the Faith comma, typography, photography, templates, and sizes.
+  - `Faith-UCC-Website-Setup-and-Maintenance-Guide.pdf`, 6 pages: one-time install on GoDaddy WordPress, everyday updates, a checklist, troubleshooting and quick reference. The live editable version is a Claude Doc.
+  - `Logos/Faith`: the primary logo and the New Braunfels lockup, each in color, white, one-color grey and black (SVG and PNG), plus the rainbow-ring social avatar.
+  - `Logos/Pride`: two pride logos ("Faith" filled with the Love Is Louder palette, and with the Progress Pride palette) and seven marks built from the comma inside our own logo's "a". The standalone marks are stripes, Progress Pride, echo and outline; the circle marks are a Love Is Louder ring, a Progress Pride disc, and logo blue with stripes. The UCC comma is deliberately not recolored, per UCC rules.
+  - `Logos/UCC`: the official UCC comma (rainbow and black), the UCC rainbow logo and "a just world for all", unaltered.
+  - `Fonts`: static TTFs of Fraunces and Instrument Sans, latin subset, with their OFL licenses.
+  - `Templates`: Sunday bulletin, event flyer and offering envelope (.docx); Sunday projector slides and social media posts (.pptx).
+  - `Colors.txt` and `README.txt`.
+- `send-to-church/` (gitignored): the brand kit, website preview and theme zips, ready to email.
+
+### Fixed
+- Church history entries now have an Order box. Before this, a new entry landed at the top of the timeline whatever its year.
+
 ## 3.10.0 — 2026-11-18
 
 Theme `faith-ucc` 1.11.0.
