@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.1.0 — 2026-11-17
+
+Cross-device pass on theme `faith-ucc` 1.2.0. Tested Chrome at 320, 375, 768, 1024, 1280, 1920 and 2560px; Safari engine on iPhone 13, iPad Mini and Mac 1440; Firefox at 390 and 1366. All 9 page types per device: no sideways overflow, no header collisions, no script errors, menu opens and closes.
+
+### Fixed
+- Safari/iOS (WebKit) crashed intermittently on the home page (3 of 4 loads in testing). Cause: the hero photo animated a CSS `filter`. Now animates transform and opacity only; 0 crashes in 6 loads.
+
+### Changed
+- Fonts bundled with the theme (Fraunces, Instrument Sans; SIL OFL, license files included). No Google Fonts requests.
+- Screens 1800px+ scale the layout up (larger type and wider content) instead of a narrow centered column.
+
 ## 3.0.0 — 2026-11-17
 
 WordPress theme. The redesign now ships as a theme for the church's existing WordPress site (`wordpress-theme/faith-ucc`, installable as `wordpress-theme/faith-ucc.zip`), so staff edit everything from the dashboard. The React build in `src/` is kept as the design prototype.
