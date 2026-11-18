@@ -114,6 +114,7 @@ get_template_part(
 				<p><a class="link-underline break" href="mailto:<?php echo esc_attr( $o['email'] ); ?>"><?php echo esc_html( $o['email'] ); ?></a></p>
 			</address>
 			<a class="btn btn-primary" href="<?php echo esc_url( $o['maps_url'] ); ?>" target="_blank" rel="noopener">Get directions <?php echo faith_icon( 'arrow' ); // phpcs:ignore ?></a>
+			<p class="small muted visit-rent">Planning an event? Our sanctuary and Fellowship Hall are <a class="link-underline strong ink" href="<?php echo esc_url( faith_page_url( 'rent' ) ); ?>">available to rent</a>.</p>
 			<?php faith_figure( faith_img( 'still-speaking-banner.webp' ), 'The church building with a rainbow “God is still speaking” banner out front', array( 'caption' => 'Look for the rainbow banner.', 'class' => 'directions-photo', 'reveal' => false ) ); ?>
 		</div>
 		<div class="map photo reveal" style="--i:1">

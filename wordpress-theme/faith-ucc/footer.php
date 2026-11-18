@@ -73,7 +73,7 @@ $o = faith_opts();
 					<li><a class="link-underline" href="<?php echo esc_url( get_post_type_archive_link( 'faith_event' ) ); ?>">All events</a></li>
 					<li><a class="link-underline" href="<?php echo esc_url( faith_page_url( 'give' ) ); ?>">Give</a></li>
 					<?php if ( $o['photos_url'] ) : ?><li><a class="link-underline" href="<?php echo esc_url( $o['photos_url'] ); ?>" target="_blank" rel="noopener">Photo album</a></li><?php endif; ?>
-					<?php if ( $o['rental_url'] ) : ?><li><a class="link-underline" href="<?php echo esc_url( $o['rental_url'] ); ?>">Rent our space</a></li><?php endif; ?>
+					<li><a class="link-underline" href="<?php echo esc_url( faith_page_url( 'rent' ) ); ?>">Rent our space</a></li>
 					<?php if ( $o['directory_url'] ) : ?><li><a class="link-underline" href="<?php echo esc_url( $o['directory_url'] ); ?>">Member directory</a></li><?php endif; ?>
 				</ul>
 			</div>

@@ -18,6 +18,15 @@ function faith_option_defaults() {
 		// Newsletter.
 		'newsletter_form_id'     => '711',
 		'newsletter_url'         => 'https://www.faithuccnb.org/newsletters/',
+		// Renting the building.
+		'rent_sanctuary'         => '$500 per day',
+		'rent_both'              => '$600 per day',
+		'rent_hall_day'          => '$300 per day',
+		'rent_hall_hour'         => '$75 per hour',
+		'rent_deposit'           => '$100, refundable',
+		'rent_phone'             => '(830) 625-6761',
+		'rent_email'             => 'officemanager@faithuccnb.org',
+		'rent_note'              => '',
 		// Announcement bar.
 		'announcement_text'      => '',
 		'announcement_link'      => '',
@@ -38,7 +47,6 @@ function faith_option_defaults() {
 		'tiktok_url'             => 'https://www.tiktok.com/@faith.ucc0',
 		'twitter_url'            => 'https://twitter.com/FaithUCCNB',
 		'photos_url'             => 'http://photos.faithuccnb.org',
-		'rental_url'             => 'https://www.faithuccnb.org/estimates/',
 		'directory_url'          => 'https://www.faithuccnb.org/church-directory/',
 		'ona_statement_url'      => 'https://www.faithuccnb.org/ona-statement/',
 		// Pastor.
@@ -73,6 +81,7 @@ function faith_opts() {
 		$cache['maps_url']     = 'https://www.google.com/maps/search/?api=1&query=' . $q;
 		$cache['maps_embed']   = 'https://maps.google.com/maps?q=' . rawurlencode( $cache['address_line'] ) . '&z=15&output=embed';
 		$cache['phone_href']   = 'tel:+1' . preg_replace( '/\D/', '', $cache['phone'] );
+		$cache['rent_phone_href'] = 'tel:+1' . preg_replace( '/\D/', '', $cache['rent_phone'] ? $cache['rent_phone'] : $cache['phone'] );
 	}
 	return $cache;
 }
@@ -116,6 +125,20 @@ function faith_option_fields() {
 				'videos_url'         => array( 'All past services', 'url', 'Where the “Past services” button goes.' ),
 				'newsletter_form_id' => array( 'Constant Contact form number', 'text', 'If the Constant Contact Forms plugin is active, this form is shown on the page. Otherwise visitors get a button to the sign-up page below.' ),
 				'newsletter_url'     => array( 'Newsletter sign-up page', 'url' ),
+			),
+		),
+		'rent'    => array(
+			'title'  => 'Renting the building',
+			'help'   => 'Prices and contact on the “Rent our space” page. Write prices the way you want them shown. Leave one blank to hide that line.',
+			'fields' => array(
+				'rent_sanctuary' => array( 'Sanctuary only', 'text' ),
+				'rent_both'      => array( 'Sanctuary & Fellowship Hall', 'text' ),
+				'rent_hall_day'  => array( 'Fellowship Hall, by the day', 'text' ),
+				'rent_hall_hour' => array( 'Fellowship Hall, by the hour', 'text' ),
+				'rent_deposit'   => array( 'Deposit', 'text' ),
+				'rent_phone'     => array( 'Rental phone', 'text' ),
+				'rent_email'     => array( 'Rental email', 'email' ),
+				'rent_note'      => array( 'Extra note (optional)', 'textarea-short', 'Example: Booked through spring; ask about summer dates.' ),
 			),
 		),
 		'notice'  => array(
@@ -178,7 +201,6 @@ function faith_option_fields() {
 				'tiktok_url'        => array( 'TikTok', 'url' ),
 				'twitter_url'       => array( 'X / Twitter', 'url' ),
 				'photos_url'        => array( 'Photo album', 'url' ),
-				'rental_url'        => array( 'Rental information', 'url' ),
 				'directory_url'     => array( 'Member directory', 'url' ),
 				'ona_statement_url' => array( 'Full ONA statement', 'url' ),
 				'meta_description'  => array( 'Search engine description', 'textarea-short', 'The short summary Google shows under the church’s name.' ),

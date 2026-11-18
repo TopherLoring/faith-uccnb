@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.10.0 — 2026-11-18
+
+Theme `faith-ucc` 1.11.0.
+
+### Added
+- "Rent our space" page (`/rent/`), built from the church's two rental flyers:
+  - Sanctuary card: $500/day, or $600/day with the Fellowship Hall.
+  - Fellowship Hall card: $300/day or $75/hour, kitchen and bathrooms included.
+  - $100 refundable deposit.
+  - "The grounds" gallery: exterior, hall entrance, and the yard and playground.
+  - "Check a date" call-to-action with call and email buttons.
+- Church Info → Renting the building: every price, the deposit, the rental phone and email (default officemanager@faithuccnb.org), and an optional note. A price left blank is hidden.
+- The page is created automatically on theme switch or update when it is missing.
+
+### Changed
+- "Rent our space" added to the Explore menu. The footer link now points to the new page instead of the old `/estimates/` page; the `rental_url` setting is retired.
+- Visit page "Getting here" mentions renting the space.
+- Test matrix and preview mirror now include `/rent/` and a search results page.
+
 ## 3.9.0 — 2026-11-17
 
 Theme `faith-ucc` 1.10.0. Improvements adopted from a review of reallife.org and sacornerstone.org.

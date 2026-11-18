@@ -12,6 +12,7 @@ $items = array(
 	array( 'Events & gatherings', 'Theology on Tap, game night, socials', faith_page_url( 'community', 'gatherings' ), 'candles.webp' ),
 	array( 'News', 'Glimpses of Faith and announcements', faith_page_url( 'news' ), 'choir.webp' ),
 	array( 'Give', 'Online giving and pledges', faith_page_url( 'give' ), 'still-speaking-banner.webp' ),
+	array( 'Rent our space', 'Sanctuary and Fellowship Hall', faith_page_url( 'rent' ), 'rent-sanctuary.webp' ),
 );
 ?>
 <div id="site-menu" class="menu-overlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true" inert data-menu>

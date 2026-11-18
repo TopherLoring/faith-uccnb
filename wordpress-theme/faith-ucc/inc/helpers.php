@@ -15,7 +15,7 @@ function faith_today() {
 
 /** Slugs of pages that use a designed template. */
 function faith_designed_slugs() {
-	return array( 'visit', 'about', 'community', 'give' );
+	return array( 'visit', 'about', 'community', 'give', 'rent' );
 }
 
 function faith_is_designed_page() {

@@ -46,6 +46,11 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 == Changelog ==
 
+= 1.11.0 — 2026-11-18 =
+* New "Rent our space" page: the sanctuary and the Fellowship Hall with photos, prices, deposit, and call/email buttons. Created automatically on update.
+* Church Info → Renting the building: prices, deposit, rental phone and email, and an optional note. A price left blank is hidden.
+* Linked from the Explore menu, the footer (replacing the old estimates link) and the Visit page.
+
 = 1.10.0 — 2026-11-17 =
 * Home page "Watch" section: live on Zoom every Sunday, plus last Sunday's service. YouTube links play on the page; Facebook links open in a new tab. Set under Church Info → Watch & newsletter.
 * "Coming up" is now a swipeable strip of cards with arrow buttons. Events and regular gatherings show their flyer or photo (the "Flyer or photo" box on each); without one they get a dated color card.

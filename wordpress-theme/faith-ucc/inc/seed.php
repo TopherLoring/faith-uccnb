@@ -108,6 +108,12 @@ function faith_seed_pages() {
 			'headline' => "Keep the\n*doors open.*",
 			'content'  => 'Faith runs on the generosity of the people who love it. In 2010, when the sanctuary note was called with 45 days’ notice, this congregation raised the money and burned the mortgage. That’s who we are.',
 		),
+		'rent'      => array(
+			'title'    => 'Rent our space',
+			'order'    => 6,
+			'headline' => "Room for\n*your day.*",
+			'content'  => 'Our newly remodeled sanctuary and our Fellowship Hall, with its kitchen, are available to rent. Call or email the church office to check a date.',
+		),
 		'news'      => array(
 			'title'    => 'News',
 			'order'    => 5,

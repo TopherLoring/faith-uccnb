@@ -633,6 +633,25 @@ html.menu-locked { overflow: hidden; }
 .footer-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .75rem; color: var(--ink-mute); }
 .footer-social { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 
+/* ---------- Rent our space ---------- */
+.ratio-16-9 { aspect-ratio: 16 / 9; }
+.spaces { display: grid; gap: 1.5rem; }
+@media (min-width: 900px) { .spaces { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; } }
+.space { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--r-lg); background: var(--paper-deep); }
+.space > .photo { border-radius: 0; }
+.space-body { display: flex; flex-direction: column; flex: 1; padding: clamp(1.5rem, 3vw, 2.25rem); }
+.space-note { margin-top: .75rem; max-width: 40ch; }
+.price-list { margin-top: 1.5rem; border-top: 1px solid rgba(46, 46, 46, .15); }
+.price-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .25rem 1rem; padding-block: .9rem; border-bottom: 1px solid rgba(46, 46, 46, .15); }
+.price-row dt { font-weight: 500; color: var(--ink-soft); }
+.price-row dd { font-family: var(--serif); font-size: 1.6rem; line-height: 1.1; color: var(--ink); }
+.space-includes { margin-top: 1rem; color: var(--green); font-weight: 600; }
+.rent-notes { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-top: 1.5rem; padding: 1rem 1.25rem; border: 1px solid var(--line); border-radius: var(--r); color: var(--ink-soft); }
+.rent-gallery { display: grid; gap: 1.5rem; margin-top: 3.5rem; }
+@media (min-width: 768px) { .rent-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.callout-actions { margin-top: 0; }
+.visit-rent { margin-top: 1.25rem; }
+
 /* ---------- Hero: place chip, rotating word ---------- */
 .hero-status { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; }
 .hero-chip { display: inline-flex; align-items: center; gap: .4rem; padding: .4rem .9rem .4rem .7rem; border-radius: 999px; background: var(--paper-deep); font-size: .875rem; font-weight: 500; color: var(--ink); transition: background-color .25s, color .25s; }
