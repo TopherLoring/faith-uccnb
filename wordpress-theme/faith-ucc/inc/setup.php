@@ -32,7 +32,7 @@ add_action( 'wp_enqueue_scripts', function () {
 }, 20 );
 
 add_action( 'wp_head', function () {
-	echo '<meta name="theme-color" content="#087EAA">' . "\n";
+	echo '<meta name="theme-color" content="#FFFFFF">' . "\n";
 	echo '<link rel="preload" href="' . esc_url( FAITH_URI . '/assets/fonts/Fraunces-normal-300_700-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<link rel="preload" href="' . esc_url( FAITH_URI . '/assets/fonts/InstrumentSans-normal-400_600-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	if ( ! has_site_icon() ) {

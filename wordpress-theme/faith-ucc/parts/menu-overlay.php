@@ -16,7 +16,7 @@ $items = array(
 ?>
 <div id="site-menu" class="menu-overlay" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true" inert data-menu>
 	<div class="wrap menu-top">
-		<?php get_template_part( 'parts/wordmark', null, array( 'mono' => true ) ); ?>
+		<?php get_template_part( 'parts/wordmark', null, array( 'light' => true ) ); ?>
 		<button type="button" class="menu-close" data-menu-close>Close <?php echo faith_icon( 'close' ); // phpcs:ignore ?></button>
 	</div>
 	<div class="wrap menu-body">

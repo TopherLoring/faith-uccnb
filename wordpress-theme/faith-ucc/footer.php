@@ -8,13 +8,12 @@ $o = faith_opts();
 
 <footer class="site-footer">
 	<section class="still-speaking" aria-label="God is still speaking">
-		<div class="rainbow-bar reveal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 		<div class="wrap still-inner">
 			<a class="still-comma reveal" href="https://www.ucc.org" target="_blank" rel="noopener">
-				<img src="<?php echo esc_url( faith_img( 'ucc-comma-rainbow-dark.png' ) ); ?>" alt="United Church of Christ comma" width="640" height="640" loading="lazy">
+				<img src="<?php echo esc_url( faith_img( 'ucc-comma-rainbow.png' ) ); ?>" alt="United Church of Christ comma" width="640" height="640" loading="lazy">
 			</a>
 			<div class="still-text">
-				<p class="still-tagline reveal" style="--i:1">God is still speaking,</p>
+				<p class="still-tagline reveal" style="--i:1"><span class="still-green">God is still</span> <span class="still-blue">speaking,</span></p>
 				<p class="still-cite reveal" style="--i:2">“Never place a period where God has placed a comma.” — Gracie Allen, the line behind the UCC’s comma</p>
 			</div>
 		</div>

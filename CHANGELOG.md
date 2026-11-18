@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.4.0 — 2026-11-17
+
+Theme `faith-ucc` 1.5.0. Replaces the 1.4.0 blue header and black/rainbow band, which were rejected.
+
+### Changed
+- Header: white bar, full-color Faith Church logo. Each nav item has its own rainbow underline on hover and when current: Visit orange, Who we are purple, Community green, News blue, Give red.
+- Full-screen menu back to forest green.
+- "God is still speaking," band: light grey, official UCC rainbow comma, tagline in the logo's green ("God is still") and blue ("speaking,").
+
+### Removed
+- Unused UCC asset files from the 1.4.0 experiments (dark comma variant, black comma, rainbow emblem).
+
 ## 3.3.0 — 2026-11-17
 
 Theme `faith-ucc` 1.4.0.

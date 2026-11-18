@@ -150,10 +150,11 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 /* ---------- Header ---------- */
 .site-header {
 	position: fixed; inset-inline: 0; top: 0; z-index: 40;
-	background: var(--blue-logo); color: #fff;
+	background: #fff; color: var(--ink);
+	box-shadow: 0 1px 0 var(--line);
 	transition: transform .5s var(--ease), background-color .3s, box-shadow .3s;
 }
-.site-header.is-scrolled { box-shadow: 0 6px 24px -12px rgba(0, 0, 0, .35); }
+.site-header.is-scrolled { box-shadow: 0 1px 0 var(--line), 0 8px 24px -16px rgba(40, 48, 51, .35); }
 .site-header.is-hidden { transform: translateY(-100%); }
 .site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: var(--header-h); }
 .admin-bar .site-header { top: 32px; }
@@ -170,10 +171,17 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 .wordmark.is-light .logo-blue { fill: #4FB3DA; }
 .wordmark.is-mono .logo-green, .wordmark.is-mono .logo-blue, .wordmark.is-mono .logo-grey { fill: #fff; }
 .nav-primary { display: none; gap: 2rem; }
-.nav-link { padding-block: .25rem; font-size: .95rem; font-weight: 500; color: rgba(255, 255, 255, .88); transition: color .25s;
+.nav-link { --nav-c: var(--ink); padding-block: .3rem; font-size: .95rem; font-weight: 500; color: var(--ink-soft); transition: color .25s;
 	background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .4s var(--ease), color .25s; }
-.nav-link:hover { color: #fff; background-size: 100% 1px; }
-.nav-link.is-current { color: #fff; font-weight: 600; background-image: linear-gradient(var(--yellow), var(--yellow)); background-size: 100% 2px; }
+/* Each section gets its own rainbow colour, shown as the underline on hover and on the current page */
+.nav-visit { --nav-c: #F26B2A; }     /* orange: welcome */
+.nav-about { --nav-c: #863695; }     /* purple: Open and Affirming, Love Is Louder */
+.nav-community { --nav-c: #0B9444; } /* green: service and creation */
+.nav-news { --nav-c: #0F75BC; }      /* blue: news */
+.nav-give { --nav-c: #E22726; }      /* red: love */
+.nav-link { background-image: linear-gradient(var(--nav-c), var(--nav-c)); background-size: 0% 3px; }
+.nav-link:hover { color: var(--ink); background-size: 100% 3px; }
+.nav-link.is-current { color: var(--ink); font-weight: 600; background-size: 100% 3px; }
 @media (min-width: 1024px) { .nav-primary { display: flex; } }
 
 .site-header-end { display: flex; align-items: center; gap: 1.25rem; }
@@ -181,11 +189,11 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 @media (min-width: 768px) { .header-status { display: inline-flex; } }
 
 .menu-btn {
-	display: inline-flex; align-items: center; gap: .75rem; color: #fff;
-	border: 1px solid rgba(255, 255, 255, .55); border-radius: 999px; padding: .5rem .8rem .5rem 1rem;
+	display: inline-flex; align-items: center; gap: .75rem; color: var(--ink);
+	border: 1px solid rgba(40, 48, 51, .2); border-radius: 999px; padding: .5rem .8rem .5rem 1rem;
 	font-size: .875rem; font-weight: 600; transition: all .3s var(--ease);
 }
-.menu-btn:hover { background: #fff; color: var(--blue); border-color: #fff; }
+.menu-btn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 .lbl-wide { display: none; }
 @media (min-width: 1024px) { .lbl-narrow { display: none; } .lbl-wide { display: inline; } }
 .menu-btn-bars { position: relative; width: 1rem; height: .75rem; display: block; }
@@ -210,14 +218,14 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 /* ---------- Menu overlay ---------- */
 .menu-overlay {
 	position: fixed; inset: 0; z-index: 50; overflow-y: auto;
-	background: var(--blue-logo); color: #fff;
+	background: var(--forest); color: #fff;
 	clip-path: inset(0 0 100% 0); visibility: hidden;
 	transition: clip-path .75s cubic-bezier(.76, 0, .24, 1), visibility 0s linear .75s;
 }
 .menu-overlay.is-open { clip-path: inset(0 0 0 0); visibility: visible; transition: clip-path .75s cubic-bezier(.76, 0, .24, 1), visibility 0s; }
 .menu-top { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); }
 .menu-close { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid rgba(255, 255, 255, .3); border-radius: 999px; padding: .5rem .8rem .5rem 1rem; font-size: .875rem; font-weight: 600; transition: all .3s; }
-.menu-close:hover { background: #fff; color: var(--blue); }
+.menu-close:hover { background: #fff; color: var(--forest); }
 .menu-body { display: grid; gap: 3rem; padding-top: 2rem; padding-bottom: 4rem; }
 @media (min-width: 1024px) { .menu-body { grid-template-columns: 1.25fr 1fr; gap: 5rem; padding-top: 3.5rem; } }
 .menu-list { border-top: 1px solid rgba(255, 255, 255, .15); }
@@ -237,7 +245,7 @@ button.circle-btn:hover { background: var(--ink); color: var(--paper); }
 .menu-preview img.is-active { opacity: 1; transform: scale(1); }
 .menu-info { display: grid; gap: 1.5rem; font-size: .875rem; }
 @media (min-width: 640px) { .menu-info { grid-template-columns: 1fr 1fr; } }
-.menu-info .eyebrow { margin-bottom: .5rem; color: #fff; opacity: .75; }
+.menu-info .eyebrow { margin-bottom: .5rem; }
 .menu-zoom { display: inline-block; margin-top: .5rem; color: rgba(255, 255, 255, .8); }
 .menu-info p { margin-top: .25rem; }
 html.menu-locked { overflow: hidden; }
@@ -543,25 +551,18 @@ html.menu-locked { overflow: hidden; }
 
 /* ---------- Footer ---------- */
 .site-footer { position: relative; overflow: hidden; margin-top: clamp(6rem, 10vw, 8rem); background: var(--forest); color: var(--paper); }
-/* "God is still speaking," band: black, a bold rainbow, and the official UCC rainbow comma */
-.still-speaking { position: relative; background: #000; color: #fff; overflow: hidden; }
-.rainbow-bar { display: flex; flex-direction: column; opacity: 1 !important; transform: none !important; }
-.rainbow-bar span { display: block; height: clamp(6px, .9vw, 12px); transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease); }
-.rainbow-bar span:nth-child(1) { background: #E22726; }
-.rainbow-bar span:nth-child(2) { background: #F26B2A; transition-delay: .06s; }
-.rainbow-bar span:nth-child(3) { background: #FFDE16; transition-delay: .12s; }
-.rainbow-bar span:nth-child(4) { background: #0B9444; transition-delay: .18s; }
-.rainbow-bar span:nth-child(5) { background: #0F75BC; transition-delay: .24s; }
-.rainbow-bar span:nth-child(6) { background: #863695; transition-delay: .30s; }
-.rainbow-bar.is-in span, .no-js .rainbow-bar span { transform: none; }
-.still-inner { display: grid; gap: 2.5rem; align-items: center; padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
-@media (min-width: 900px) { .still-inner { grid-template-columns: auto 1fr; gap: clamp(3rem, 6vw, 6rem); } }
-.still-comma { display: block; width: clamp(10rem, 24vw, 19rem); }
+/* "God is still speaking," band: light grey, the official UCC rainbow comma, tagline in the logo's green and blue */
+.still-speaking { background: var(--paper-deep); color: var(--ink); }
+.still-inner { display: grid; gap: 1.75rem; align-items: center; padding-top: clamp(3.5rem, 6vw, 5rem); padding-bottom: clamp(3.5rem, 6vw, 5rem); }
+@media (min-width: 640px) { .still-inner { grid-template-columns: auto 1fr; gap: clamp(1.5rem, 3vw, 2.5rem); } }
+.still-comma { display: block; width: clamp(5.5rem, 10vw, 9rem); }
 .still-comma img { width: 100%; height: auto; }
 .still-comma.reveal { transform: scale(.88); }
 .still-comma.reveal.is-in { transform: none; }
-.still-tagline { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 7.5vw, 7rem); line-height: .98; letter-spacing: -.015em; }
-.still-cite { margin-top: 1.5rem; max-width: 46ch; font-size: .95rem; color: rgba(255, 255, 255, .65); }
+.still-tagline { font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.5rem, 6.2vw, 5.8rem); line-height: 1; letter-spacing: -.015em; }
+.still-green { color: var(--green); }
+.still-blue { color: var(--blue); }
+.still-cite { margin-top: 1.25rem; max-width: 46ch; font-size: .95rem; color: var(--ink-mute); }
 .footer-inner { position: relative; padding-top: 4rem; padding-bottom: 2.5rem; }
 .footer-grid { display: grid; gap: 3rem; }
 .footer-ucc { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: 3.5rem; padding: 1.25rem 1.5rem; background: var(--paper); color: var(--ink-soft); border-radius: 2px; }
