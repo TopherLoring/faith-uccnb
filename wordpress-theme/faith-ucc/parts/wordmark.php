@@ -1,18 +1,10 @@
 <?php
 /**
- * Faith Church logo. Uses the logo uploaded under Appearance → Customize → Site Identity when there is one
- * (on light backgrounds); otherwise the built-in vector version, which also has a light variant for dark areas.
+ * Faith Church logo (built-in vector, traced from the church's own logo).
+ * $args['light'] = light colors for dark backgrounds; $args['mono'] = one-color white, for the blue header.
  */
-$light = ! empty( $args['light'] );
-$label = get_bloginfo( 'name' ) . ', home';
+$variant = ! empty( $args['mono'] ) ? ' is-mono' : ( ! empty( $args['light'] ) ? ' is-light' : '' );
 ?>
-<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="wordmark<?php echo $light ? ' is-light' : ''; ?>" aria-label="<?php echo esc_attr( $label ); ?>">
-	<?php
-	$logo_id = (int) get_theme_mod( 'custom_logo' );
-	if ( ! $light && $logo_id && wp_get_attachment_image_url( $logo_id, 'full' ) ) {
-		echo wp_get_attachment_image( $logo_id, 'full', false, array( 'alt' => '', 'loading' => 'eager', 'decoding' => 'async' ) );
-	} else {
-		echo faith_logo_svg(); // phpcs:ignore WordPress.Security.EscapeOutput -- bundled theme file
-	}
-	?>
+<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="wordmark<?php echo esc_attr( $variant ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) . ', home' ); ?>">
+	<?php echo faith_logo_svg(); // phpcs:ignore WordPress.Security.EscapeOutput -- bundled theme file ?>
 </a>

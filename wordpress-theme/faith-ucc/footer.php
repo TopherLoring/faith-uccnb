@@ -8,10 +8,15 @@ $o = faith_opts();
 
 <footer class="site-footer">
 	<section class="still-speaking" aria-label="God is still speaking">
-		<?php echo faith_ribbons( 'footer-ribbons', 0.25, 2.5 ); // phpcs:ignore ?>
+		<div class="rainbow-bar reveal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 		<div class="wrap still-inner">
-			<p class="still-tagline">God is still speaking,</p>
-			<p class="still-cite">“Never place a period where God has placed a comma.” — Gracie Allen, the line behind the UCC’s comma</p>
+			<a class="still-comma reveal" href="https://www.ucc.org" target="_blank" rel="noopener">
+				<img src="<?php echo esc_url( faith_img( 'ucc-comma-rainbow-dark.png' ) ); ?>" alt="United Church of Christ comma" width="640" height="640" loading="lazy">
+			</a>
+			<div class="still-text">
+				<p class="still-tagline reveal" style="--i:1">God is still speaking,</p>
+				<p class="still-cite reveal" style="--i:2">“Never place a period where God has placed a comma.” — Gracie Allen, the line behind the UCC’s comma</p>
+			</div>
 		</div>
 	</section>
 	<div class="wrap footer-inner">

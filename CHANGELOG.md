@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.3.0 — 2026-11-17
+
+Theme `faith-ucc` 1.4.0.
+
+### Changed
+- Header and full-screen menu on the logo blue `#087EAA` with a one-color white logo; desktop menu button reads "Explore" (the bar holds the 5 main pages, Explore holds every destination plus Sunday details).
+- "God is still speaking," band rebuilt for impact: full-width six-stripe rainbow that wipes in, and the official UCC rainbow comma at large size beside the tagline.
+- Announcement bar moved to UCC yellow.
+
+### Removed
+- Custom-logo upload; the built-in logo is used everywhere.
+
 ## 3.2.0 — 2026-11-17
 
 Theme `faith-ucc` 1.3.0.

@@ -8,7 +8,6 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script', 'navigation-widgets' ) );
 	add_theme_support( 'responsive-embeds' );
-	add_theme_support( 'custom-logo', array( 'height' => 200, 'width' => 260, 'flex-height' => true, 'flex-width' => true ) );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
 	add_editor_style( array( 'assets/fonts/fonts.css', 'assets/css/editor.css' ) );
@@ -33,7 +32,7 @@ add_action( 'wp_enqueue_scripts', function () {
 }, 20 );
 
 add_action( 'wp_head', function () {
-	echo '<meta name="theme-color" content="#FFFFFF">' . "\n";
+	echo '<meta name="theme-color" content="#087EAA">' . "\n";
 	echo '<link rel="preload" href="' . esc_url( FAITH_URI . '/assets/fonts/Fraunces-normal-300_700-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<link rel="preload" href="' . esc_url( FAITH_URI . '/assets/fonts/InstrumentSans-normal-400_600-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	if ( ! has_site_icon() ) {

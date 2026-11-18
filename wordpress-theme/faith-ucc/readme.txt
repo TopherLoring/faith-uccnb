@@ -38,14 +38,19 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 == Branding ==
 
 - Logo: Faith Church (green "Faith" with the comma, blue cross "t", grey "CHURCH"). The built-in vector version is
-  traced from the church's own logo; upload the original file under Appearance → Customize → Site Identity → Logo
-  to use it in the header instead.
+  traced from the church's own logo. The header uses a one-color white version on the logo blue.
 - Colors: logo green #5EA563 (text: #36703D), logo blue #087EAA (text: #066A8F), charcoal #4D585C,
   white #FFFFFF, light grey #EAEAEA (from the current site), forest #3C4E40, UCC rainbow (#E22726 #F26B2A #FFDE16 #0B9444 #0F75BC #863695).
 - UCC marks (rainbow "United Church of Christ" logo and "a just world for all" comma) are the official files from
   ucc.org and are shown unaltered, per UCC brand guidelines.
 
 == Changelog ==
+
+= 1.4.0 — 2026-11-17 =
+* Header and full-screen menu on the logo blue (#087EAA), with a one-color white logo. On desktop the menu button reads "Explore".
+* "God is still speaking," band: bold six-stripe rainbow and the official UCC rainbow comma (unaltered; registration mark shown in white on black).
+* Announcement bar in UCC yellow so it stands apart from the header.
+* Removed the custom-logo upload (a full-color logo can't sit on the blue header); the built-in logo is used everywhere.
 
 = 1.3.0 — 2026-11-17 =
 * News images show the whole graphic (no cropping of flyers and text).
