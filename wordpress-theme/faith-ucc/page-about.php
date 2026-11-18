@@ -41,6 +41,10 @@ get_template_part( 'parts/page-intro', null, array( 'eyebrow' => 'Who we are' ) 
 		<div class="ona-text">
 			<p class="eyebrow reveal">Open and Affirming since 2009</p>
 			<h2 class="display-lg reveal" style="--i:1">If you’re LGBTQ+, this is your church too.</h2>
+			<figure class="progress-pride reveal" style="--i:2">
+				<div class="pp-stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+				<figcaption>Progress Pride colors: the rainbow, with black and brown for LGBTQ+ people of color, and light blue, pink and white for trans people.</figcaption>
+			</figure>
 			<div class="prose muted reveal" style="--i:2">
 				<p>“Open and Affirming” is the UCC’s name for congregations that publicly, officially welcome people of every sexual orientation, gender identity, and gender expression. Faith voted to become one in January 2009, after a long season of listening and conversation across the whole church.</p>
 				<p>Our statement goes further than that: people of every race, ethnic background, age, ability, economic situation, marital status, family structure, and faith background are welcomed into full membership and participation. We try to reflect the kind of love Jesus showed, which didn’t come with a guest list.</p>

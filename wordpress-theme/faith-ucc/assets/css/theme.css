@@ -409,6 +409,35 @@ html.menu-locked { overflow: hidden; }
 .ona { display: grid; gap: 2.5rem; }
 @media (min-width: 1024px) { .ona { grid-template-columns: 5fr 7fr; } .ona-text { padding-left: 2rem; } }
 .ona .prose { margin-top: 2rem; }
+
+/* Progress Pride colors (as used in the UCC Love Is Louder heart): trans, then black and brown, then the rainbow */
+.progress-pride { margin-top: 1.75rem; }
+.pp-stripes { display: grid; grid-template-columns: repeat(11, 1fr); height: 12px; border-radius: 999px; overflow: hidden; border: 1px solid #CFCFCF; background: #fff; }
+.pp-stripes span { transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease); }
+.pp-stripes span:nth-child(1)  { background: #FFFFFF; }
+.pp-stripes span:nth-child(2)  { background: #F7ACC8; }
+.pp-stripes span:nth-child(3)  { background: #7DD2E7; }
+.pp-stripes span:nth-child(4)  { background: #684A30; }
+.pp-stripes span:nth-child(5)  { background: #282826; }
+.pp-stripes span:nth-child(6)  { background: #E23434; }
+.pp-stripes span:nth-child(7)  { background: #F78C35; }
+.pp-stripes span:nth-child(8)  { background: #F7EB2D; }
+.pp-stripes span:nth-child(9)  { background: #2D8549; }
+.pp-stripes span:nth-child(10) { background: #4668AF; }
+.pp-stripes span:nth-child(11) { background: #7A3989; }
+.progress-pride.is-in .pp-stripes span, .no-js .pp-stripes span { transform: none; }
+.pp-stripes span:nth-child(1) { transition-delay: 0.15s; }
+.pp-stripes span:nth-child(2) { transition-delay: 0.19s; }
+.pp-stripes span:nth-child(3) { transition-delay: 0.23s; }
+.pp-stripes span:nth-child(4) { transition-delay: 0.27s; }
+.pp-stripes span:nth-child(5) { transition-delay: 0.31s; }
+.pp-stripes span:nth-child(6) { transition-delay: 0.35s; }
+.pp-stripes span:nth-child(7) { transition-delay: 0.39s; }
+.pp-stripes span:nth-child(8) { transition-delay: 0.43s; }
+.pp-stripes span:nth-child(9) { transition-delay: 0.47s; }
+.pp-stripes span:nth-child(10) { transition-delay: 0.51s; }
+.pp-stripes span:nth-child(11) { transition-delay: 0.55s; }
+.progress-pride figcaption { margin-top: .6rem; max-width: 52ch; font-size: .85rem; color: var(--ink-mute); }
 .pillars { display: grid; margin-top: 3.5rem; border-top: 1px solid var(--line); }
 .pillar { padding-block: 2.5rem; border-bottom: 1px solid var(--line); }
 .pillar-n { font-size: .875rem; font-weight: 600; color: var(--green); }

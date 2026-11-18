@@ -46,6 +46,9 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 == Changelog ==
 
+= 1.8.0 — 2026-11-17 =
+* Progress Pride colors on Who we are (Open and Affirming section), as a stripe with a short caption explaining them.
+
 = 1.7.0 — 2026-11-17 =
 * Logo re-traced from the church's official logo file; footer uses the full lockup with NEW BRAUNFELS, TEXAS.
 * Rainbow switched to the UCC Love Is Louder palette (hero ribbons, nav underlines); purple #7A3C87.

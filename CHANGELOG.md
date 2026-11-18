@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.7.0 — 2026-11-17
+
+Theme `faith-ucc` 1.8.0.
+
+### Added
+- Progress Pride colors on Who we are, in the Open and Affirming section: an 11-color stripe (white, pink, light blue, brown, black, then the rainbow), sampled from the UCC Love Is Louder heart, with a caption explaining the added colors. The softer Love Is Louder arcs stay the site's main rainbow.
+
 ## 3.6.0 — 2026-11-17
 
 Theme `faith-ucc` 1.7.0.
