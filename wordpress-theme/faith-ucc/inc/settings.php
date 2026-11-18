@@ -33,9 +33,9 @@ function faith_option_defaults() {
 		'pledge_url'             => 'https://www.faithuccnb.org/2022pledge/',
 		// Links.
 		'facebook_url'           => 'https://www.facebook.com/FaithUCCNewBraunfels',
-		'instagram_url'          => '',
+		'instagram_url'          => 'https://www.instagram.com/faithuccnb/',
 		'youtube_url'            => 'https://www.youtube.com/channel/UCIKKrs7USApGyOWURnIt_GA',
-		'tiktok_url'             => '',
+		'tiktok_url'             => 'https://www.tiktok.com/@faith.ucc0',
 		'twitter_url'            => 'https://twitter.com/FaithUCCNB',
 		'photos_url'             => 'http://photos.faithuccnb.org',
 		'rental_url'             => 'https://www.faithuccnb.org/estimates/',

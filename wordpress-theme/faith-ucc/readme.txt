@@ -54,7 +54,9 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 * Rotating word in the home headline: "Bring your questions. / doubts. / family. / whole self." Edit the words in the home page headline box as {questions.|doubts.|family.|whole self.}.
 * Service time and address chip in the home hero.
 * Glimpses of Faith newsletter sign-up on the home and News pages, and in the footer. Uses the Constant Contact form when that plugin is active, otherwise links to the sign-up page.
-* Footer social icons (Facebook, Instagram, YouTube, TikTok, X); each shows once its link is filled in under Church Info → Other links.
+* Footer social icons (Facebook, Instagram, YouTube, TikTok, X); each shows once its link is filled in under Church Info → Other links. Instagram (@faithuccnb) and TikTok (@faith.ucc0) are filled in.
+* Wide (landscape) flyers get a double-width card so they stay readable.
+* Seeded events with flyers: Ecumenical Thanksgiving Worship (Nov 19, Peace Lutheran) and Soup Swap & Game Night (Dec 12). Added on update when missing; skipped once past.
 * Rounder corners on photos, cards and panels.
 * SOS Food Bank link corrected to sosnb.org.
 

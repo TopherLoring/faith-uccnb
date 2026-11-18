@@ -83,6 +83,7 @@ function faith_gathering_data( $post ) {
 		'date'   => faith_next_occurrence( $rule, $weekday ),
 		'image'  => (string) get_the_post_thumbnail_url( $post, 'medium_large' ),
 		'alt'    => faith_thumb_alt( $post ),
+		'wide'   => faith_thumb_is_wide( $post ),
 	);
 }
 
@@ -96,6 +97,12 @@ function faith_get_gatherings() {
 		)
 	);
 	return array_map( 'faith_gathering_data', $posts );
+}
+
+/** True when a post's featured image is landscape (a wide flyer gets a double-width card). */
+function faith_thumb_is_wide( $post ) {
+	$src = wp_get_attachment_image_src( get_post_thumbnail_id( $post ), 'medium_large' );
+	return $src && $src[2] && ( $src[1] / $src[2] ) > 1.15;
 }
 
 /** Alt text of a post's featured image, falling back to the post title. */
@@ -118,6 +125,7 @@ function faith_event_data( $post ) {
 		'url'      => get_permalink( $post ),
 		'image'    => (string) get_the_post_thumbnail_url( $post, 'medium_large' ),
 		'alt'      => faith_thumb_alt( $post ),
+		'wide'     => faith_thumb_is_wide( $post ),
 		'blurb'    => wp_trim_words( wp_strip_all_tags( str_replace( array( '</p>', '<br>', '<br />' ), ' ', $post->post_content ) ), 26 ),
 	);
 }
@@ -161,6 +169,7 @@ function faith_coming_up( $limit = 5 ) {
 			'token' => '',
 			'image' => $e['image'],
 			'alt'   => $e['alt'],
+			'wide'  => $e['wide'],
 		);
 	}
 	foreach ( faith_get_gatherings() as $g ) {
@@ -176,6 +185,7 @@ function faith_coming_up( $limit = 5 ) {
 			'token' => $g['token'],
 			'image' => $g['image'],
 			'alt'   => $g['alt'],
+			'wide'  => $g['wide'],
 		);
 	}
 	usort( $items, fn( $a, $b ) => strcmp( $a['date'], $b['date'] ) );

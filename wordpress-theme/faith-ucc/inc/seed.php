@@ -161,6 +161,24 @@ function faith_seed_upgrade_v2() {
 	if ( $tot ) {
 		faith_seed_attach_image( $tot[0]->ID, 'theology-on-tap.webp', 'Theology on Tap: glasses of beer on a slate table' );
 	}
+	// Seeded events: add any that are missing (and still ahead), then attach their flyers.
+	foreach ( faith_seed_events() as $e ) {
+		$found = get_posts( array( 'post_type' => 'faith_event', 'title' => $e['title'], 'posts_per_page' => 1, 'post_status' => 'any' ) );
+		if ( $found ) {
+			$id = $found[0]->ID;
+		} elseif ( $e['date'] >= faith_today() ) {
+			$id = wp_insert_post( array( 'post_type' => 'faith_event', 'post_status' => 'publish', 'post_title' => $e['title'], 'post_content' => $e['content'] ) );
+			update_post_meta( $id, 'faith_date', $e['date'] );
+			update_post_meta( $id, 'faith_start', $e['start'] );
+			update_post_meta( $id, 'faith_end', $e['end'] );
+			update_post_meta( $id, 'faith_location', $e['location'] );
+		} else {
+			continue;
+		}
+		if ( ! empty( $e['image'] ) ) {
+			faith_seed_attach_image( $id, $e['image'], $e['alt'] );
+		}
+	}
 	foreach ( get_posts( array( 'post_type' => 'faith_partner', 'posts_per_page' => 50, 'post_status' => 'any' ) ) as $p ) {
 		$link = get_post_meta( $p->ID, 'faith_url', true );
 		if ( $link && false !== strpos( $link, 'sosfoodbank.org' ) ) {
@@ -277,12 +295,24 @@ function faith_seed_faqs() {
 function faith_seed_events() {
 	return array(
 		array(
+			'title'    => 'Ecumenical Thanksgiving Worship',
+			'date'     => '2026-11-19',
+			'start'    => '18:30',
+			'end'      => '19:15',
+			'location' => 'Peace Lutheran Church, 1147 S. Walnut Ave.',
+			'content'  => '<p>Together we give thanks. Join our local faith community as we gather to glorify God and give thanks with our brothers and sisters in Christ.</p><p>Partner congregations: Peace Lutheran Church, St. John’s Episcopal Church, New Braunfels Presbyterian Church, Faith United Church of Christ, and others.</p><p>The offering supports First Footing Shelter of New Braunfels. Fellowship and refreshments follow.</p>',
+			'image'    => 'thanksgiving-2026-flyer.webp',
+			'alt'      => 'Flyer: Ecumenical Thanksgiving Worship, Thursday, November 19, 2026, 6:30 to 7:15 p.m. at Peace Lutheran Church, 1147 S. Walnut Ave., New Braunfels. Offering for First Footing Shelter; fellowship and refreshments to follow.',
+		),
+		array(
 			'title'    => 'Soup Swap & Game Night',
 			'date'     => '2026-12-12',
 			'start'    => '18:00',
 			'end'      => '21:00',
 			'location' => 'Fellowship Hall',
 			'content'  => '<p>Come share warm soups and warmer friendships! Bring a favorite soup, bread or dessert to share, along with your beverage of choice.</p><p>We’ll have board games ready to play, plus a fire pit (weather permitting).</p>',
+			'image'    => 'soup-swap-flyer.webp',
+			'alt'      => 'Flyer: Faith UCC Soup Swap and Game Night, December 12, 6 to 9 p.m. in the Fellowship Hall. Bring a soup, bread or dessert to share; board games and a fire pit.',
 		),
 	);
 }

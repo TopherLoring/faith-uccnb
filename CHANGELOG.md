@@ -12,7 +12,12 @@ Theme `faith-ucc` 1.10.0. Improvements adopted from a review of reallife.org and
 - Rotating headline word: "Bring your questions. / doubts. / family. / whole self." Editable via `{a|b|c}` in the headline box; static for reduced motion; screen readers hear the first word.
 - Hero chip with the street address linking to Maps.
 - Glimpses of Faith newsletter sign-up on Home and News, plus a footer link. Renders the Constant Contact form (#711) when that plugin is active, otherwise links to the sign-up page.
-- Footer social icons for Facebook, Instagram, YouTube, TikTok and X, each shown once its Church Info link is filled in. YouTube defaults to the church's channel.
+- Footer social icons for Facebook, Instagram, YouTube, TikTok and X, each shown once its Church Info link is filled in. YouTube defaults to the church's channel. Instagram (@faithuccnb) and TikTok (@faith.ucc0) are filled in by default.
+- Wide (landscape) flyers get a double-width card so they stay readable; every card in the strip shares one height.
+- Seeded events with flyers: Ecumenical Thanksgiving Worship (Nov 19, Peace Lutheran) and Soup Swap & Game Night (Dec 12). They are added on update when missing and skipped once past.
+
+### Fixed
+- 320px phones: the header and event cards no longer push the page 10px wider.
 
 ### Changed
 - Rounded corners: radius tokens (8 / 14 / 22px) on photos, cards, panels, map and menu rows.

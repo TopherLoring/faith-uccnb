@@ -18,13 +18,13 @@ $gatherings_url = faith_page_url( 'community', 'gatherings' );
 			$tone = $i % 6;
 			$url  = $it['url'] ? $it['url'] : $gatherings_url;
 			?>
-			<li class="ev-card reveal tone-<?php echo (int) $tone; ?>" style="--i:<?php echo (int) min( $i, 5 ); ?>"<?php echo faith_date_attrs( $it['date'], $it['token'] ); // phpcs:ignore ?>>
+			<li class="ev-card reveal tone-<?php echo (int) $tone; ?><?php echo ( $it['image'] && ! empty( $it['wide'] ) ) ? ' is-wide' : ''; ?>" style="--i:<?php echo (int) min( $i, 5 ); ?>"<?php echo faith_date_attrs( $it['date'], $it['token'] ); // phpcs:ignore ?>>
 				<a class="ev-link" href="<?php echo esc_url( $url ); ?>">
 					<div class="ev-media<?php echo $it['image'] ? ' has-img' : ''; ?>">
+						<span class="ev-kind"><?php echo $it['token'] ? 'Every month' : 'Special event'; ?></span>
 						<?php if ( $it['image'] ) : ?>
 							<img src="<?php echo esc_url( $it['image'] ); ?>" alt="<?php echo esc_attr( $it['alt'] ); ?>" loading="lazy" decoding="async">
 						<?php else : ?>
-							<span class="ev-kind"><?php echo $it['token'] ? 'Every month' : 'Special event'; ?></span>
 							<span class="ev-tile" aria-hidden="true">
 								<span class="ev-day" data-fmt="day"><?php echo esc_html( faith_fmt_date( $it['date'], 'j' ) ); ?></span>
 								<span class="ev-mon" data-fmt="mon"><?php echo esc_html( faith_fmt_date( $it['date'], 'M D' ) ); ?></span>
