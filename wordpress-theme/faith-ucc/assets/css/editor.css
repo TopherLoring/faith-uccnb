@@ -1,5 +1,5 @@
 /* Make the post editor read like the published site. */
-body { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 18px; line-height: 1.75; color: #4A453E; background: #FFFFFF; }
-h1, h2, h3, .editor-post-title__input { font-family: Fraunces, Georgia, serif; color: #1D1B18; font-weight: 400; letter-spacing: -.01em; }
-a { color: #8F3720; }
-blockquote { border-left: 2px solid #B4472A; padding-left: 1.25rem; font-family: Fraunces, Georgia, serif; }
+body { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 18px; line-height: 1.75; color: #585858; background: #FFFFFF; }
+h1, h2, h3, .editor-post-title__input { font-family: Fraunces, Georgia, serif; color: #2E2E2E; font-weight: 400; letter-spacing: -.01em; }
+a { color: #00729A; }
+blockquote { border-left: 2px solid #5AA761; padding-left: 1.25rem; font-family: Fraunces, Georgia, serif; }

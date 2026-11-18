@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.5.0 — 2026-11-17
+
+Theme `faith-ucc` 1.6.0.
+
+### Changed
+- Exact logo colors supplied by Chris: green `#5AA761`, blue `#007FAC`, grey `#585858`, white `#FFFFFF` / `#FEFEFE`. Replaces values sampled from screenshots (`#5EA563`, `#087EAA`, `#4D585C`).
+- Readable text shades re-derived from the official colors: green `#3E7443` (5.5:1 on white), blue `#00729A` (5.4:1). Grays are now neutral (`#2E2E2E`, `#585858`, `#666666`) instead of blue-tinted.
+- Logo vector and post editor styles updated to match.
+
 ## 3.4.0 — 2026-11-17
 
 Theme `faith-ucc` 1.5.0. Replaces the 1.4.0 blue header and black/rainbow band, which were rejected.

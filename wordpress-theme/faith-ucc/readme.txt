@@ -39,12 +39,14 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 - Logo: Faith Church (green "Faith" with the comma, blue cross "t", grey "CHURCH"). The built-in vector version is
   traced from the church's own logo. Full color on white in the header; a light version on dark backgrounds.
-- Colors: logo green #5EA563 (text: #36703D), logo blue #087EAA (text: #066A8F), charcoal #4D585C,
-  white #FFFFFF, light grey #EAEAEA (from the current site), forest #3C4E40, UCC rainbow (#E22726 #F26B2A #FFDE16 #0B9444 #0F75BC #863695).
-- UCC marks (rainbow "United Church of Christ" logo and "a just world for all" comma) are the official files from
-  ucc.org and are shown unaltered, per UCC brand guidelines.
+- Colors (official logo values): green #5AA761 (text: #3E7443), blue #007FAC (text: #00729A), grey #585858,
+  white #FFFFFF, light grey #EAEAEA (from the current site), forest #3C4E40,
+  UCC rainbow (#E22726 #F26B2A #FFDE16 #0B9444 #0F75BC #863695).
 
 == Changelog ==
+
+= 1.6.0 — 2026-11-17 =
+* Exact logo colors from the church: green #5AA761, blue #007FAC, grey #585858 (previously sampled from screenshots). Text and button shades re-derived from them to stay readable; grays are now neutral instead of blue-tinted.
 
 = 1.5.0 — 2026-11-17 =
 * Header back to white with the full-color logo. Each nav item has its own rainbow underline on hover and on the current page: Visit orange, Who we are purple, Community green, News blue, Give red.
