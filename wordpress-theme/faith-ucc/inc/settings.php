@@ -11,6 +11,13 @@ function faith_option_defaults() {
 		'zoom_url'               => 'https://us04web.zoom.us/j/586745671?pwd=aG0wUnZTR3NIKzBXUXp1Vkh2KzJXQT09',
 		'zoom_id'                => '586 745 671',
 		'communion_first_sunday' => 1,
+		// Watch.
+		'latest_video_url'       => '',
+		'latest_video_title'     => '',
+		'videos_url'             => 'https://www.facebook.com/FaithUCCNewBraunfels/videos/',
+		// Newsletter.
+		'newsletter_form_id'     => '711',
+		'newsletter_url'         => 'https://www.faithuccnb.org/newsletters/',
 		// Announcement bar.
 		'announcement_text'      => '',
 		'announcement_link'      => '',
@@ -26,6 +33,9 @@ function faith_option_defaults() {
 		'pledge_url'             => 'https://www.faithuccnb.org/2022pledge/',
 		// Links.
 		'facebook_url'           => 'https://www.facebook.com/FaithUCCNewBraunfels',
+		'instagram_url'          => '',
+		'youtube_url'            => 'https://www.youtube.com/channel/UCIKKrs7USApGyOWURnIt_GA',
+		'tiktok_url'             => '',
 		'twitter_url'            => 'https://twitter.com/FaithUCCNB',
 		'photos_url'             => 'http://photos.faithuccnb.org',
 		'rental_url'             => 'https://www.faithuccnb.org/estimates/',
@@ -97,6 +107,17 @@ function faith_option_fields() {
 				'communion_first_sunday' => array( 'Communion on first Sundays', 'checkbox', 'Shows “Communion Sunday” next to first-Sunday dates.' ),
 			),
 		),
+		'watch'   => array(
+			'title'  => 'Watch & newsletter',
+			'help'   => 'The “Watch” section on the home page and the newsletter sign-up.',
+			'fields' => array(
+				'latest_video_url'   => array( 'Latest service video', 'url', 'Paste the Facebook or YouTube link to last Sunday’s service. YouTube links play right on the page. Leave blank to point people to all past services.' ),
+				'latest_video_title' => array( 'Video title (optional)', 'text', 'Example: Sunday worship · Nov 16 · “Still Speaking”' ),
+				'videos_url'         => array( 'All past services', 'url', 'Where the “Past services” button goes.' ),
+				'newsletter_form_id' => array( 'Constant Contact form number', 'text', 'If the Constant Contact Forms plugin is active, this form is shown on the page. Otherwise visitors get a button to the sign-up page below.' ),
+				'newsletter_url'     => array( 'Newsletter sign-up page', 'url' ),
+			),
+		),
 		'notice'  => array(
 			'title'  => 'Announcement bar',
 			'help'   => 'A thin bar across the top of every page. Leave blank to hide it. Good for weather closings or a special service.',
@@ -151,7 +172,10 @@ function faith_option_fields() {
 		'links'   => array(
 			'title'  => 'Other links',
 			'fields' => array(
-				'facebook_url'      => array( 'Facebook', 'url' ),
+				'facebook_url'      => array( 'Facebook', 'url', 'Social links show as icons in the footer. Leave one blank to hide it.' ),
+				'instagram_url'     => array( 'Instagram', 'url' ),
+				'youtube_url'       => array( 'YouTube', 'url' ),
+				'tiktok_url'        => array( 'TikTok', 'url' ),
 				'twitter_url'       => array( 'X / Twitter', 'url' ),
 				'photos_url'        => array( 'Photo album', 'url' ),
 				'rental_url'        => array( 'Rental information', 'url' ),

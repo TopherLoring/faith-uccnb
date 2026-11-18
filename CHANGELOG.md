@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.9.0 — 2026-11-17
+
+Theme `faith-ucc` 1.10.0. Improvements adopted from a review of reallife.org and sacornerstone.org.
+
+### Added
+- Home "Watch" section: Sunday live on Zoom plus last Sunday's service. YouTube links play in place (click-to-load, privacy-enhanced embed); Facebook links open in a new tab. Church Info → Watch & newsletter.
+- "Coming up" as a swipeable card strip with arrow buttons. Cards show each event's or gathering's flyer/photo, or a dated Love Is Louder color tile tagged "Every month" / "Special event". Regular gatherings gain a "Flyer or photo" box; Theology on Tap ships with its artwork.
+- Header "Plan a visit" (orange outline) and "Give" (green) pills; search button opens the Explore menu with the search box focused.
+- Search box in the Explore menu and on the results page.
+- Rotating headline word: "Bring your questions. / doubts. / family. / whole self." Editable via `{a|b|c}` in the headline box; static for reduced motion; screen readers hear the first word.
+- Hero chip with the street address linking to Maps.
+- Glimpses of Faith newsletter sign-up on Home and News, plus a footer link. Renders the Constant Contact form (#711) when that plugin is active, otherwise links to the sign-up page.
+- Footer social icons for Facebook, Instagram, YouTube, TikTok and X, each shown once its Church Info link is filled in. YouTube defaults to the church's channel.
+
+### Changed
+- Rounded corners: radius tokens (8 / 14 / 22px) on photos, cards, panels, map and menu rows.
+- Header nav is now Who we are / Community / News; Visit and Give moved to the pills. The compact Sunday status shows at 768–1023px and from 1360px up.
+- SOS Food Bank link corrected to https://sosnb.org (seed plus a one-time upgrade of existing installs).
+
 ## 3.8.0 — 2026-11-17
 
 Theme `faith-ucc` 1.9.0.

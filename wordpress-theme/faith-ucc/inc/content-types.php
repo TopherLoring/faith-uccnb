@@ -98,7 +98,7 @@ add_action( 'init', function () {
 				'public'        => false,
 				'menu_icon'     => 'dashicons-update',
 				'menu_position' => 5,
-				'supports'      => array( 'title', 'page-attributes' ),
+				'supports'      => array( 'title', 'thumbnail', 'page-attributes' ),
 			)
 		)
 	);
@@ -175,6 +175,10 @@ function faith_cpt_labels( $one, $many, $add ) {
 		'not_found_in_trash' => 'None in the trash.',
 		'all_items'          => 'All ' . strtolower( $many ),
 		'menu_name'          => $many,
+		'featured_image'        => 'Flyer or photo',
+		'set_featured_image'    => 'Add a flyer or photo',
+		'remove_featured_image' => 'Remove flyer or photo',
+		'use_featured_image'    => 'Use as flyer or photo',
 	);
 }
 

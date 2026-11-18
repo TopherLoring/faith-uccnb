@@ -4,11 +4,9 @@
  */
 $faith_section = faith_current_section();
 $faith_nav     = array(
-	'visit'     => 'Visit',
 	'about'     => 'Who we are',
 	'community' => 'Community',
 	'news'      => 'News',
-	'give'      => 'Give',
 );
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
@@ -45,6 +43,9 @@ $faith_nav     = array(
 
 		<div class="site-header-end">
 			<span class="header-status"><?php get_template_part( 'parts/sunday-status', null, array( 'compact' => true ) ); ?></span>
+			<button type="button" class="header-search" data-search-open aria-label="Search the site"><?php echo faith_icon( 'search' ); // phpcs:ignore ?></button>
+			<a class="header-pill pill-visit<?php echo 'visit' === $faith_section ? ' is-current' : ''; ?>" href="<?php echo esc_url( faith_page_url( 'visit' ) ); ?>"<?php echo 'visit' === $faith_section ? ' aria-current="page"' : ''; ?>><span class="lbl-narrow">Visit</span><span class="lbl-wide">Plan a visit</span></a>
+			<a class="header-pill pill-give<?php echo 'give' === $faith_section ? ' is-current' : ''; ?>" href="<?php echo esc_url( faith_page_url( 'give' ) ); ?>"<?php echo 'give' === $faith_section ? ' aria-current="page"' : ''; ?>>Give</a>
 			<button type="button" class="menu-btn" data-menu-open aria-expanded="false" aria-controls="site-menu">
 				<span class="menu-btn-label"><span class="lbl-narrow">Menu</span><span class="lbl-wide">Explore</span></span> <span class="menu-btn-bars" aria-hidden="true"><span></span><span></span></span>
 			</button>

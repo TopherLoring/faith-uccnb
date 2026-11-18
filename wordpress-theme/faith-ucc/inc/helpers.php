@@ -62,6 +62,7 @@ function faith_current_section() {
 
 /**
  * Render a big headline. One line per row; wrap words in *asterisks* for the italic accent.
+ * {one|two|three} cycles through the words in place (the first one is what screen readers hear).
  * Each line rises in on load.
  */
 function faith_headline( $text, $tag = 'h1', $class = 'display-xl' ) {
@@ -70,10 +71,32 @@ function faith_headline( $text, $tag = 'h1', $class = 'display-xl' ) {
 	$i = 0;
 	foreach ( $lines as $line ) {
 		$html = preg_replace( '/\*(.+?)\*/', '<em class="accent">$1</em>', esc_html( $line ) );
+		$html = preg_replace_callback( '/\{([^}]+)\}/', 'faith_rotator_html', $html );
 		echo '<span class="line-mask"><span style="--i:' . (int) $i . '">' . $html . '</span></span>';
 		$i++;
 	}
 	echo '</' . tag_escape( $tag ) . '>';
+}
+
+/** Markup for a {a|b|c} word rotator. Input is already escaped. */
+function faith_rotator_html( $m ) {
+	$words = array_values( array_filter( array_map( 'trim', explode( '|', $m[1] ) ), 'strlen' ) );
+	if ( count( $words ) < 2 ) {
+		return $words ? $words[0] : '';
+	}
+	$out = '<span class="screen-reader-text">' . $words[0] . '</span><span class="rotator" data-rotator aria-hidden="true">';
+	foreach ( $words as $i => $w ) {
+		$out .= '<span class="rot-word' . ( 0 === $i ? ' is-on' : '' ) . '">' . $w . '</span>';
+	}
+	return $out . '</span>';
+}
+
+/** YouTube video ID from any common link shape, or ''. */
+function faith_youtube_id( $url ) {
+	if ( preg_match( '~(?:youtu\.be/|youtube(?:-nocookie)?\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|live/|v/))([A-Za-z0-9_-]{11})~', (string) $url, $m ) ) {
+		return $m[1];
+	}
+	return '';
 }
 
 /** Page headline meta, falling back to the title. */
@@ -118,11 +141,43 @@ function faith_icon( $name ) {
 		'arrow-up-right' => '<path d="M7 17 17 7M8 7h9v9"/>',
 		'plus'        => '<path d="M12 5v14M5 12h14"/>',
 		'close'       => '<path d="M6 6l12 12M18 6 6 18"/>',
+		'search'      => '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/>',
+		'pin'         => '<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>',
+		'play'        => '<path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/>',
+		'mail'        => '<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>',
 	);
 	if ( ! isset( $paths[ $name ] ) ) {
 		return '';
 	}
 	return '<svg class="icon icon-' . esc_attr( $name ) . '" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $paths[ $name ] . '</svg>';
+}
+
+/** Social network icons (filled, 24px grid). */
+function faith_social_icon( $name ) {
+	$paths = array(
+		'facebook'  => '<path d="M13.6 21v-7.4h2.5l.4-3h-2.9V8.8c0-.9.3-1.4 1.5-1.4h1.5V4.7a20 20 0 0 0-2.2-.1c-2.2 0-3.7 1.3-3.7 3.8v2.2H8.2v3h2.5V21z"/>',
+		'instagram' => '<path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm4.9-8.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM12 3c-2.4 0-2.7 0-3.7.1-1 0-1.7.2-2.2.4a4.5 4.5 0 0 0-2.6 2.6c-.2.5-.4 1.2-.4 2.2C3 9.3 3 9.6 3 12s0 2.7.1 3.7c0 1 .2 1.7.4 2.2a4.5 4.5 0 0 0 2.6 2.6c.5.2 1.2.4 2.2.4 1 .1 1.3.1 3.7.1s2.7 0 3.7-.1c1 0 1.7-.2 2.2-.4a4.5 4.5 0 0 0 2.6-2.6c.2-.5.4-1.2.4-2.2.1-1 .1-1.3.1-3.7s0-2.7-.1-3.7c0-1-.2-1.7-.4-2.2a4.5 4.5 0 0 0-2.6-2.6c-.5-.2-1.2-.4-2.2-.4C14.7 3 14.4 3 12 3zm0 1.6c2.4 0 2.6 0 3.6.1.9 0 1.4.2 1.7.3.4.2.7.4 1 .7.3.3.5.6.7 1 .1.3.3.8.3 1.7.1 1 .1 1.2.1 3.6s0 2.6-.1 3.6c0 .9-.2 1.4-.3 1.7-.2.4-.4.7-.7 1-.3.3-.6.5-1 .7-.3.1-.8.3-1.7.3-1 .1-1.2.1-3.6.1s-2.6 0-3.6-.1c-.9 0-1.4-.2-1.7-.3-.4-.2-.7-.4-1-.7-.3-.3-.5-.6-.7-1-.1-.3-.3-.8-.3-1.7-.1-1-.1-1.2-.1-3.6s0-2.6.1-3.6c0-.9.2-1.4.3-1.7.2-.4.4-.7.7-1 .3-.3.6-.5 1-.7.3-.1.8-.3 1.7-.3 1-.1 1.2-.1 3.6-.1z"/>',
+		'youtube'   => '<path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3z"/>',
+		'tiktok'    => '<path d="M16.6 3h-3.1v12.1a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.4a5.8 5.8 0 1 0 4.9 5.7V9a7.5 7.5 0 0 0 4.4 1.4V7.3A4.4 4.4 0 0 1 16.6 3z"/>',
+		'x'         => '<path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.2l-4.9-6.3L5.4 21H2.3l7.2-8.3L1.8 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/>',
+	);
+	if ( ! isset( $paths[ $name ] ) ) {
+		return '';
+	}
+	return '<svg class="icon icon-social" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">' . $paths[ $name ] . '</svg>';
+}
+
+/** The church's social links that are filled in, as [ network, label, url ]. */
+function faith_social_links() {
+	$o   = faith_opts();
+	$out = array();
+	foreach ( array( 'facebook' => 'Facebook', 'instagram' => 'Instagram', 'youtube' => 'YouTube', 'tiktok' => 'TikTok', 'x' => 'X' ) as $net => $label ) {
+		$key = 'x' === $net ? 'twitter_url' : $net . '_url';
+		if ( ! empty( $o[ $key ] ) ) {
+			$out[] = array( $net, $label, $o[ $key ] );
+		}
+	}
+	return $out;
 }
 
 /** The swagged rainbow ribbons, after the ones strung across the sanctuary rafters. */

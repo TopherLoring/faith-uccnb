@@ -64,6 +64,11 @@ function faith_seed() {
 		update_option( 'faith_seeded_v1', 1, false );
 	}
 
+	if ( ! get_option( 'faith_seeded_v2' ) ) {
+		faith_seed_upgrade_v2();
+		update_option( 'faith_seeded_v2', 1, false );
+	}
+
 	if ( false === get_option( 'faith_options', false ) ) {
 		add_option( 'faith_options', faith_option_defaults() );
 	}
@@ -76,7 +81,7 @@ function faith_seed_pages() {
 		'home'      => array(
 			'title'    => 'Home',
 			'order'    => 0,
-			'headline' => "Come as\nyou are.\n*Bring your*\n*questions.*",
+			'headline' => "Come as\nyou are.\n*Bring your*\n*{questions.|doubts.|family.|whole self.}*",
 			'content'  => 'Faith is a progressive, Open and Affirming church on Loop 337. Every person, every family, every honest doubt has a seat here.',
 		),
 		'visit'     => array(
@@ -110,6 +115,58 @@ function faith_seed_pages() {
 			'content'  => '',
 		),
 	);
+}
+
+/**
+ * Copy a bundled theme image into the media library and set it as a post's featured image.
+ * Skips posts that already have one, so staff edits are never replaced.
+ */
+function faith_seed_attach_image( $post_id, $file, $alt ) {
+	if ( ! $post_id || has_post_thumbnail( $post_id ) ) {
+		return;
+	}
+	$path = get_template_directory() . '/assets/img/' . $file;
+	if ( ! file_exists( $path ) ) {
+		return;
+	}
+	$upload = wp_upload_bits( $file, null, file_get_contents( $path ) ); // phpcs:ignore
+	if ( ! empty( $upload['error'] ) ) {
+		return;
+	}
+	$type   = wp_check_filetype( $upload['file'] );
+	$att_id = wp_insert_attachment(
+		array(
+			'post_mime_type' => $type['type'],
+			'post_title'     => $alt,
+			'post_status'    => 'inherit',
+		),
+		$upload['file'],
+		$post_id
+	);
+	if ( is_wp_error( $att_id ) || ! $att_id ) {
+		return;
+	}
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	wp_update_attachment_metadata( $att_id, wp_generate_attachment_metadata( $att_id, $upload['file'] ) );
+	update_post_meta( $att_id, '_wp_attachment_image_alt', $alt );
+	set_post_thumbnail( $post_id, $att_id );
+}
+
+/**
+ * Additions after the first release: gathering artwork and corrected partner links.
+ * Only fills gaps and replaces the old SOS address; nothing staff changed is touched.
+ */
+function faith_seed_upgrade_v2() {
+	$tot = get_posts( array( 'post_type' => 'faith_gathering', 'title' => 'Theology on Tap', 'posts_per_page' => 1, 'post_status' => 'any' ) );
+	if ( $tot ) {
+		faith_seed_attach_image( $tot[0]->ID, 'theology-on-tap.webp', 'Theology on Tap: glasses of beer on a slate table' );
+	}
+	foreach ( get_posts( array( 'post_type' => 'faith_partner', 'posts_per_page' => 50, 'post_status' => 'any' ) ) as $p ) {
+		$link = get_post_meta( $p->ID, 'faith_url', true );
+		if ( $link && false !== strpos( $link, 'sosfoodbank.org' ) ) {
+			update_post_meta( $p->ID, 'faith_url', 'https://sosnb.org' );
+		}
+	}
 }
 
 function faith_seed_items() {
@@ -195,7 +252,7 @@ function faith_seed_milestones() {
 /** [name, role, since, body, url] */
 function faith_seed_partners() {
 	return array(
-		array( 'SOS Food Bank', 'Feeding neighbors', '40+ years', 'Members serve at Spirit of Sharing, New Braunfels’ food bank. Faith has backed it for more than four decades.', 'https://sosfoodbank.org' ),
+		array( 'SOS Food Bank', 'Feeding neighbors', '40+ years', 'Members serve at Spirit of Sharing, New Braunfels’ food bank. Faith has backed it for more than four decades.', 'https://sosnb.org' ),
 		array( 'Family Promise', 'Housing families', 'Founding member', 'Faith helped start the local Family Promise network, which supports families experiencing homelessness.', 'https://fpgnb.org' ),
 		array( 'LEAP', 'Adult literacy', 'Founded by Faith, 2015', 'Free one-on-one tutoring for adults who struggle to read. Started here, still running.', '' ),
 		array( 'Kiva', 'Microlending', 'Since 2007', 'Over $63,000 lent to borrowers in underserved communities across 85 countries, repaid and lent again.', 'https://www.kiva.org' ),

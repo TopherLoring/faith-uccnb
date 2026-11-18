@@ -21,6 +21,7 @@ $items = array(
 	</div>
 	<div class="wrap menu-body">
 		<nav aria-label="All pages">
+			<?php get_template_part( 'parts/search-form', null, array( 'id' => 'menu-search', 'class' => 'menu-search' ) ); ?>
 			<ul class="menu-list">
 				<?php foreach ( $items as $i => $it ) : ?>
 					<li class="menu-item" style="--i:<?php echo (int) $i; ?>">

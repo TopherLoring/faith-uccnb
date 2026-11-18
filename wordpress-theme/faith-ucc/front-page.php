@@ -20,7 +20,10 @@ $partners = get_posts( array( 'post_type' => 'faith_partner', 'posts_per_page' =
 				<a class="btn btn-primary" href="<?php echo esc_url( faith_page_url( 'visit' ) ); ?>">Plan your first Sunday <?php echo faith_icon( 'arrow' ); // phpcs:ignore ?></a>
 				<a class="btn btn-ghost" href="<?php echo esc_url( $o['zoom_url'] ); ?>" target="_blank" rel="noopener">Watch on Zoom</a>
 			</div>
-			<div class="fade-in hero-status" style="--d:1.1s"><?php get_template_part( 'parts/sunday-status' ); ?></div>
+			<div class="fade-in hero-status" style="--d:1.1s">
+				<?php get_template_part( 'parts/sunday-status' ); ?>
+				<a class="hero-chip" href="<?php echo esc_url( $o['maps_url'] ); ?>" target="_blank" rel="noopener"><?php echo faith_icon( 'pin' ); // phpcs:ignore ?> <span><?php echo esc_html( $o['street'] . ', ' . $o['city'] ); ?></span></a>
+			</div>
 		</div>
 		<div class="hero-media">
 			<div class="hero-photo photo">
@@ -108,16 +111,24 @@ $partners = get_posts( array( 'post_type' => 'faith_partner', 'posts_per_page' =
 	</div>
 </section>
 
-<section class="band band-deep">
-	<div class="wrap band-grid">
+<?php get_template_part( 'parts/watch' ); ?>
+
+<section class="band band-deep band-strip">
+	<div class="wrap strip-head">
 		<div class="reveal">
 			<p class="eyebrow">Coming up</p>
 			<h2 class="display-lg">Sunday is just the start.</h2>
 			<p class="lede">Every week there’s worship, Sunday school, and book group. Every month there’s more.</p>
-			<a class="btn btn-ghost" href="<?php echo esc_url( faith_page_url( 'community', 'gatherings' ) ); ?>">Everything we do <?php echo faith_icon( 'arrow' ); // phpcs:ignore ?></a>
 		</div>
-		<?php get_template_part( 'parts/date-list', null, array( 'items' => faith_coming_up(), 'limit' => 4 ) ); ?>
+		<div class="strip-tools reveal" style="--i:1">
+			<a class="text-link" href="<?php echo esc_url( faith_page_url( 'community', 'gatherings' ) ); ?>"><span class="link-underline">Everything we do</span> <?php echo faith_icon( 'arrow' ); // phpcs:ignore ?></a>
+			<div class="strip-arrows">
+				<button type="button" class="circle-btn circle-btn-lg" data-strip-prev aria-label="Earlier"><?php echo faith_icon( 'arrow-left' ); // phpcs:ignore ?></button>
+				<button type="button" class="circle-btn circle-btn-lg" data-strip-next aria-label="Later"><?php echo faith_icon( 'arrow' ); // phpcs:ignore ?></button>
+			</div>
+		</div>
 	</div>
+	<?php get_template_part( 'parts/event-strip', null, array( 'items' => faith_coming_up(), 'limit' => 10 ) ); ?>
 </section>
 
 <section class="wrap section">
@@ -160,6 +171,8 @@ if ( $latest ) :
 		</div>
 	</section>
 <?php endif; ?>
+
+<?php get_template_part( 'parts/newsletter' ); ?>
 
 <section class="wrap section">
 	<div class="pastor-note">

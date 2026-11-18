@@ -22,5 +22,6 @@ $cats      = array_values( array_filter( $cats, fn( $c ) => ! preg_match( '/^(Ja
 	<?php endif; ?>
 </section>
 <?php get_template_part( 'parts/post-loop' ); ?>
+<?php get_template_part( 'parts/newsletter' ); ?>
 <?php
 get_footer();

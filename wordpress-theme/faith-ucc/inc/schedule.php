@@ -81,6 +81,8 @@ function faith_gathering_data( $post ) {
 		'time'   => faith_time_range( $start, $end ),
 		'blurb'  => get_post_meta( $post->ID, 'faith_blurb', true ),
 		'date'   => faith_next_occurrence( $rule, $weekday ),
+		'image'  => (string) get_the_post_thumbnail_url( $post, 'medium_large' ),
+		'alt'    => faith_thumb_alt( $post ),
 	);
 }
 
@@ -96,6 +98,13 @@ function faith_get_gatherings() {
 	return array_map( 'faith_gathering_data', $posts );
 }
 
+/** Alt text of a post's featured image, falling back to the post title. */
+function faith_thumb_alt( $post ) {
+	$id  = get_post_thumbnail_id( $post );
+	$alt = $id ? get_post_meta( $id, '_wp_attachment_image_alt', true ) : '';
+	return $alt ? $alt : get_the_title( $post );
+}
+
 /** Normalized data for one event. */
 function faith_event_data( $post ) {
 	$date = get_post_meta( $post->ID, 'faith_date', true );
@@ -107,6 +116,8 @@ function faith_event_data( $post ) {
 		'location' => get_post_meta( $post->ID, 'faith_location', true ),
 		'link'     => get_post_meta( $post->ID, 'faith_link', true ),
 		'url'      => get_permalink( $post ),
+		'image'    => (string) get_the_post_thumbnail_url( $post, 'medium_large' ),
+		'alt'      => faith_thumb_alt( $post ),
 		'blurb'    => wp_trim_words( wp_strip_all_tags( str_replace( array( '</p>', '<br>', '<br />' ), ' ', $post->post_content ) ), 26 ),
 	);
 }
@@ -148,6 +159,8 @@ function faith_coming_up( $limit = 5 ) {
 			'blurb' => $e['location'] ? $e['location'] . ( $e['blurb'] ? ' · ' . $e['blurb'] : '' ) : $e['blurb'],
 			'url'   => $e['url'],
 			'token' => '',
+			'image' => $e['image'],
+			'alt'   => $e['alt'],
 		);
 	}
 	foreach ( faith_get_gatherings() as $g ) {
@@ -161,6 +174,8 @@ function faith_coming_up( $limit = 5 ) {
 			'blurb' => $g['blurb'],
 			'url'   => '',
 			'token' => $g['token'],
+			'image' => $g['image'],
+			'alt'   => $g['alt'],
 		);
 	}
 	usort( $items, fn( $a, $b ) => strcmp( $a['date'], $b['date'] ) );

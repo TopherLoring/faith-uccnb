@@ -24,6 +24,21 @@ $o = faith_opts();
 			<div>
 				<?php get_template_part( 'parts/wordmark', null, array( 'full' => true ) ); ?>
 				<p class="footer-about">A progressive, Open and Affirming congregation of the United Church of Christ in New Braunfels since 1966.</p>
+				<?php $faith_social = faith_social_links(); ?>
+				<?php if ( $faith_social ) : ?>
+					<ul class="social-icons" aria-label="Faith on social media">
+						<?php foreach ( $faith_social as $sl ) : ?>
+							<li><a class="social-icon social-<?php echo esc_attr( $sl[0] ); ?>" href="<?php echo esc_url( $sl[2] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $sl[1] ); ?>"><?php echo faith_social_icon( $sl[0] ); // phpcs:ignore ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				<?php if ( $o['newsletter_url'] ) : ?>
+					<a class="footer-news" href="<?php echo esc_url( $o['newsletter_url'] ); ?>">
+						<span class="footer-news-icon"><?php echo faith_icon( 'mail' ); // phpcs:ignore ?></span>
+						<span><strong>Newsletter</strong><span>Glimpses of Faith, monthly</span></span>
+						<?php echo faith_icon( 'arrow' ); // phpcs:ignore ?>
+					</a>
+				<?php endif; ?>
 			</div>
 
 			<div>
@@ -74,8 +89,6 @@ $o = faith_opts();
 		<div class="footer-base">
 			<p>© <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?> · New Braunfels, Texas</p>
 			<div class="footer-social">
-				<?php if ( $o['facebook_url'] ) : ?><a class="link-underline" href="<?php echo esc_url( $o['facebook_url'] ); ?>" target="_blank" rel="noopener">Facebook</a><?php endif; ?>
-				<?php if ( $o['twitter_url'] ) : ?><a class="link-underline" href="<?php echo esc_url( $o['twitter_url'] ); ?>" target="_blank" rel="noopener">X / Twitter</a><?php endif; ?>
 				<a class="link-underline" href="https://www.ucc.org" target="_blank" rel="noopener">ucc.org</a>
 				<?php if ( is_user_logged_in() && current_user_can( 'edit_pages' ) ) : ?>
 					<a class="link-underline" href="<?php echo esc_url( admin_url() ); ?>">Update the site</a>

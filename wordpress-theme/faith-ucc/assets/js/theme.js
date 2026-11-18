@@ -119,6 +119,8 @@
         var mon = $('[data-fmt="mon"]', row);
         if (rule && day) day.textContent = fmt(date, { day: 'numeric' });
         if (rule && mon) mon.textContent = fmt(date, { month: 'short' }) + ' ' + fmt(date, { weekday: 'short' });
+        var short = $('[data-fmt="short"]', row);
+        if (rule && short) short.textContent = fmt(date, { weekday: 'short', month: 'short', day: 'numeric' });
       });
       rows.sort(function (a, b) { return a.getAttribute('data-date') < b.getAttribute('data-date') ? -1 : 1; });
       var shown = 0;
@@ -207,7 +209,7 @@
     var closer = $('[data-menu-close]', menu);
     var lastFocus = null;
 
-    function setOpen(open) {
+    function setOpen(open, focusEl) {
       menu.classList.toggle('is-open', open);
       menu.setAttribute('aria-hidden', open ? 'false' : 'true');
       if (open) menu.removeAttribute('inert'); else menu.setAttribute('inert', '');
@@ -215,20 +217,24 @@
       openers.forEach(function (b) { b.setAttribute('aria-expanded', open ? 'true' : 'false'); });
       if (open) {
         lastFocus = document.activeElement;
-        setTimeout(function () { closer && closer.focus(); }, 60);
+        setTimeout(function () { (focusEl || closer) && (focusEl || closer).focus(); }, 60);
       } else if (lastFocus && lastFocus.focus) {
         lastFocus.focus();
       }
     }
 
     openers.forEach(function (b) { b.addEventListener('click', function () { setOpen(true); }); });
+    var searchInput = $('[data-search-input]', menu);
+    $$('[data-search-open]').forEach(function (b) {
+      b.addEventListener('click', function () { setOpen(true, searchInput); });
+    });
     if (closer) closer.addEventListener('click', function () { setOpen(false); });
 
     document.addEventListener('keydown', function (e) {
       if (!menu.classList.contains('is-open')) return;
       if (e.key === 'Escape') { setOpen(false); return; }
       if (e.key === 'Tab') {
-        var f = $$('a[href], button', menu);
+        var f = $$('a[href], button, input', menu);
         var first = f[0], last = f[f.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
         else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -350,7 +356,84 @@
   /* ---------- Go ---------- */
 
   renderSundayStatus();
+  /* ---------- Headline word rotator ---------- */
+
+  function initRotators() {
+    $$('[data-rotator]').forEach(function (rot) {
+      var words = $$('.rot-word', rot);
+      if (words.length < 2 || reduceMotion) return;
+      var i = 0;
+      function step() {
+        if (document.hidden) return;
+        var cur = words[i];
+        i = (i + 1) % words.length;
+        cur.classList.remove('is-on');
+        cur.classList.add('is-out');
+        words[i].classList.remove('is-out');
+        words[i].classList.add('is-on');
+        setTimeout(function () { cur.classList.remove('is-out'); }, 600);
+      }
+      // Start once the headline has risen in.
+      setTimeout(function () { setInterval(step, 2600); }, 1400);
+    });
+  }
+
+  /* ---------- Coming-up strip ---------- */
+
+  function initStrips() {
+    $$('[data-strip]').forEach(function (strip) {
+      var track = $('[data-strip-track]', strip);
+      var section = strip.closest('section') || document;
+      var prev = $('[data-strip-prev]', section);
+      var next = $('[data-strip-next]', section);
+      if (!track) return;
+      function cardStep() {
+        var card = $('.ev-card:not(.is-past):not(.is-extra)', track);
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
+      }
+      function update() {
+        var max = track.scrollWidth - track.clientWidth - 2;
+        if (prev) prev.disabled = track.scrollLeft <= 2;
+        if (next) next.disabled = track.scrollLeft >= max;
+        strip.classList.toggle('is-scrollable', max > 2);
+      }
+      function go(dir) {
+        track.scrollBy({ left: dir * cardStep(), behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+      if (prev) prev.addEventListener('click', function () { go(-1); });
+      if (next) next.addEventListener('click', function () { go(1); });
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  }
+
+  /* ---------- Click-to-play YouTube (nothing loads from YouTube until pressed) ---------- */
+
+  function initVideos() {
+    $$('[data-yt]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-yt');
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
+        f.title = btn.getAttribute('aria-label') || 'Video';
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        f.className = 'watch-iframe';
+        var box = document.createElement('div');
+        box.className = 'watch-frame photo is-playing';
+        box.appendChild(f);
+        btn.replaceWith(box);
+        f.focus();
+      });
+    });
+  }
+
   refreshDateLists();
+  initRotators();
+  initStrips();
+  initVideos();
   initReveals();
   initHeader();
   initMenu();

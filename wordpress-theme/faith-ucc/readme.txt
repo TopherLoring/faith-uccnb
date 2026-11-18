@@ -46,6 +46,18 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 == Changelog ==
 
+= 1.10.0 — 2026-11-17 =
+* Home page "Watch" section: live on Zoom every Sunday, plus last Sunday's service. YouTube links play on the page; Facebook links open in a new tab. Set under Church Info → Watch & newsletter.
+* "Coming up" is now a swipeable strip of cards with arrow buttons. Events and regular gatherings show their flyer or photo (the "Flyer or photo" box on each); without one they get a dated color card.
+* Header: "Plan a visit" and "Give" buttons, plus a search button that opens the menu with the search box ready.
+* Search box in the Explore menu and on the search results page.
+* Rotating word in the home headline: "Bring your questions. / doubts. / family. / whole self." Edit the words in the home page headline box as {questions.|doubts.|family.|whole self.}.
+* Service time and address chip in the home hero.
+* Glimpses of Faith newsletter sign-up on the home and News pages, and in the footer. Uses the Constant Contact form when that plugin is active, otherwise links to the sign-up page.
+* Footer social icons (Facebook, Instagram, YouTube, TikTok, X); each shows once its link is filled in under Church Info → Other links.
+* Rounder corners on photos, cards and panels.
+* SOS Food Bank link corrected to sosnb.org.
+
 = 1.9.0 — 2026-11-17 =
 * Header, Explore menu and footer share the light grey of the "God is still speaking," band; footer flows on from the band.
 * Explore menu items highlight in the soft Love Is Louder colors (color bar and tint).

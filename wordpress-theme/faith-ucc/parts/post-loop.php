@@ -28,6 +28,6 @@
 			?>
 		</nav>
 	<?php else : ?>
-		<p class="lede">Nothing here yet.</p>
+		<p class="lede"><?php echo is_search() ? 'Nothing matched that. Try a shorter word, or open the menu to browse.' : 'Nothing here yet.'; ?></p>
 	<?php endif; ?>
 </section>
