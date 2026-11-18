@@ -47,6 +47,10 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 == Changelog ==
 
+= 1.3.0 — 2026-11-17 =
+* News images show the whole graphic (no cropping of flyers and text).
+* Faster motion: headline, fade and scroll animations about twice as quick; anything already on screen appears immediately.
+
 = 1.2.0 — 2026-11-17 =
 * Fix: Safari/iOS (WebKit) could crash on the home page; the hero photo animation no longer animates a color filter.
 * Fonts (Fraunces, Instrument Sans; SIL Open Font License) are bundled with the theme; no Google Fonts requests.

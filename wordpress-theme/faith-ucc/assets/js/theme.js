@@ -146,12 +146,18 @@
       els.forEach(function (el) { el.classList.add('is-in'); });
       return;
     }
+    // Anything already on screen (or just below it) shows right away; the rest as it scrolls in.
+    var vh = window.innerHeight;
+    var rest = els.filter(function (el) {
+      if (el.getBoundingClientRect().top < vh * 1.05) { el.classList.add('is-in'); return false; }
+      return true;
+    });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    els.forEach(function (el) { io.observe(el); });
+    }, { rootMargin: '0px 0px 12% 0px', threshold: 0 });
+    rest.forEach(function (el) { io.observe(el); });
   }
 
   /* ---------- Header: hide on scroll down, show on scroll up ---------- */
