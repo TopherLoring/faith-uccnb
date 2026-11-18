@@ -1,0 +1,7 @@
+.faith-settings .faith-lede{font-size:15px;max-width:640px}
+.faith-card{background:#fff;border:1px solid #dcdcde;border-radius:8px;padding:8px 24px 12px;margin:20px 0;max-width:960px}
+.faith-card h2{font-size:18px;margin:16px 0 4px}
+.faith-card .form-table th{width:220px}
+.faith-image-field{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.faith-image-preview{width:96px;height:120px;object-fit:cover;border-radius:6px;background:#f0f0f1}
+.faith-save{position:sticky;bottom:0;background:#f0f0f1;padding:14px 0;max-width:960px;border-top:1px solid #dcdcde}

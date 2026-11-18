@@ -5,3 +5,6 @@ dist
 *.local
 
 Microsoft/
+
+# Static snapshot of the WordPress theme for local viewing (rebuilt, not source)
+preview/

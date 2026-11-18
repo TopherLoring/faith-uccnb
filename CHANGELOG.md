@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.0.0 — 2026-11-17
+
+WordPress theme. The redesign now ships as a theme for the church's existing WordPress site (`wordpress-theme/faith-ucc`, installable as `wordpress-theme/faith-ucc.zip`), so staff edit everything from the dashboard. The React build in `src/` is kept as the design prototype.
+
+### Added
+- Theme `faith-ucc` 1.1.0: Home, Plan a visit, Who we are, In the community, Give, News, Events, 404.
+- "Church Info" admin page: worship times, Zoom link, announcement bar, contact, pastor bio/photo, giving links, home page numbers.
+- Content types with plain forms: Events (auto-hide when past), Regular gatherings (dates calculate themselves), Church history, Community partners, Visitor FAQs. Posts relabeled "News".
+- Dashboard "Update the website" shortcuts.
+- First-run setup creates the pages and verified starting content; switching themes restores the old front page.
+- `preview/`: static snapshot for viewing locally (open `preview/index.html`). Gitignored.
+
+### Changed (brand)
+- Church's own logo (Faith Church) in the header, traced to vector from the church's TikTok avatar; site icon from the ringed logo.
+- Palette from the church's materials: logo green `#5EA563` (text `#36703D`), logo blue `#087EAA` (text `#066A8F`), charcoal `#4D585C`, white with the current site's grey `#EAEAEA`, forest `#3C4E40`, UCC rainbow.
+- Official UCC rainbow logo and "a just world for all" comma from ucc.org, unaltered; "God is still speaking," footer band.
+- "Be the Church" lines replace invented values copy; explicit trans, intersex and nonbinary welcome with a link to UCC Love Is Louder.
+
+### Removed
+- Custom comma graphics (UCC guidelines prohibit new comma-based marks) and the rust accent color.
+
 ## 2.0.0 — 2026-11-17
 
 Full redesign. Replaced the 1.x single-page build.
