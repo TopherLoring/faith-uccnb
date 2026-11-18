@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.2.0 — 2026-11-17
+
+Theme `faith-ucc` 1.3.0.
+
+### Fixed
+- News cards cropped flyer graphics (text cut off). Images now show whole on a light grey field.
+- Motion felt slow and some on-screen items waited for a scroll to appear. Animations roughly twice as fast; anything on screen at load appears immediately. Verified: nothing in view is still hidden 1.3s after load (Chrome desktop/phone, Safari).
+- Preview: file names are now Windows-safe and fonts are inlined, so `preview/index.html` opens correctly from disk.
+
 ## 3.1.0 — 2026-11-17
 
 Cross-device pass on theme `faith-ucc` 1.2.0. Tested Chrome at 320, 375, 768, 1024, 1280, 1920 and 2560px; Safari engine on iPhone 13, iPad Mini and Mac 1440; Firefox at 390 and 1366. All 9 page types per device: no sideways overflow, no header collisions, no script errors, menu opens and closes.

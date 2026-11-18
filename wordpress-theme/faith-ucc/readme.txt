@@ -47,6 +47,12 @@ Everything is in the left-hand menu of the dashboard. The Dashboard home has a "
 
 == Changelog ==
 
+= 1.2.0 — 2026-11-17 =
+* Fix: Safari/iOS (WebKit) could crash on the home page; the hero photo animation no longer animates a color filter.
+* Fonts (Fraunces, Instrument Sans; SIL Open Font License) are bundled with the theme; no Google Fonts requests.
+* Large monitors (1800px+) scale the layout up instead of showing a narrow column.
+* Tested in Chrome, Safari (iPhone 13, iPad Mini, Mac) and Firefox at 320–2560px wide.
+
 = 1.1.0 — 2026-11-17 =
 * Rebrand to Faith's own identity: church logo in the header, logo green/blue palette, white and light grey backgrounds.
 * Official UCC rainbow logo in the footer and the "a just world for all" comma on Who we are, unaltered.

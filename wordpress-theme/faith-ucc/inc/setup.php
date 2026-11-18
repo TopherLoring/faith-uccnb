@@ -11,19 +11,15 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'custom-logo', array( 'height' => 200, 'width' => 260, 'flex-height' => true, 'flex-width' => true ) );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'editor-styles' );
-	add_editor_style( 'assets/css/editor.css' );
+	add_editor_style( array( 'assets/fonts/fonts.css', 'assets/css/editor.css' ) );
 	add_image_size( 'faith-card', 900, 675, true );
 	add_image_size( 'faith-wide', 1600, 900, false );
 	register_nav_menus( array( 'footer' => __( 'Footer links', 'faith-ucc' ) ) );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style(
-		'faith-fonts',
-		'https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Instrument+Sans:wght@400;500;600&display=swap',
-		array(),
-		null
-	);
+	// Fonts are bundled with the theme (no Google Fonts requests).
+	wp_enqueue_style( 'faith-fonts', FAITH_URI . '/assets/fonts/fonts.css', array(), FAITH_VERSION );
 	wp_enqueue_style( 'faith-theme', FAITH_URI . '/assets/css/theme.css', array( 'faith-fonts' ), FAITH_VERSION );
 	wp_enqueue_script( 'faith-theme', FAITH_URI . '/assets/js/theme.js', array(), FAITH_VERSION, array( 'strategy' => 'defer', 'in_footer' => true ) );
 	wp_localize_script( 'faith-theme', 'FAITH', faith_js_config() );
@@ -38,7 +34,8 @@ add_action( 'wp_enqueue_scripts', function () {
 
 add_action( 'wp_head', function () {
 	echo '<meta name="theme-color" content="#FFFFFF">' . "\n";
-	echo '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url( FAITH_URI . '/assets/fonts/Fraunces-normal-300_700-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url( FAITH_URI . '/assets/fonts/InstrumentSans-normal-400_600-latin.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	if ( ! has_site_icon() ) {
 		echo '<link rel="icon" type="image/png" href="' . esc_url( FAITH_URI . '/assets/img/favicon.png' ) . '">' . "\n";
 		echo '<link rel="apple-touch-icon" href="' . esc_url( FAITH_URI . '/assets/img/apple-touch-icon.png' ) . '">' . "\n";
