@@ -47,28 +47,25 @@ function Timeline() {
   };
 
   return (
-    <div className="mt-12">
-      <div className="wrap flex flex-wrap items-center justify-between gap-4">
-        <div role="tablist" aria-label="Filter the timeline" className="flex flex-wrap gap-2">
+    <div className="tl">
+    <div className="wrap tl-controls">
+      <div role="group" aria-label="Filter the timeline" className="chips">
           {FILTERS.map((f) => (
             <button
               key={f.id}
-              role="tab"
-              aria-selected={filter === f.id}
+              aria-pressed={filter === f.id}
               onClick={() => setFilter(f.id)}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                filter === f.id ? 'border-ink bg-ink text-paper' : 'border-ink/20 hover:border-ink'
-              }`}
+              className={`chip${filter === f.id ? ' is-on' : ''}`}
             >
               {f.label}
             </button>
           ))}
         </div>
-        <div className="flex gap-2">
-          <button onClick={() => nudge(-1)} aria-label="Scroll timeline back" className="grid h-11 w-11 place-items-center rounded-full border border-ink/20 transition-colors hover:bg-ink hover:text-paper">
+        <div className="tl-arrows">
+          <button onClick={() => nudge(-1)} aria-label="Scroll timeline back" className="circle-btn circle-btn-lg">
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           </button>
-          <button onClick={() => nudge(1)} aria-label="Scroll timeline forward" className="grid h-11 w-11 place-items-center rounded-full border border-ink/20 transition-colors hover:bg-ink hover:text-paper">
+          <button onClick={() => nudge(1)} aria-label="Scroll timeline forward" className="circle-btn circle-btn-lg">
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
@@ -78,25 +75,25 @@ function Timeline() {
         ref={track}
         tabIndex={0}
         aria-label="Faith church history, scroll sideways"
-        className="timeline mt-8 flex gap-5 overflow-x-auto pb-4 pr-10"
+        className="tl-track"
         style={{ paddingLeft: 'max(clamp(1.25rem, 4vw, 3.5rem), calc((100vw - 1320px) / 2 + 3.5rem))', scrollPaddingLeft: 'max(clamp(1.25rem, 4vw, 3.5rem), calc((100vw - 1320px) / 2 + 3.5rem))' }}
       >
         {items.map((m, i) => (
           <article
             key={`${filter}-${m.year}-${m.title}`}
-            className="fade-in flex w-[78vw] max-w-[340px] shrink-0 flex-col border-t-2 border-ink pt-5 sm:w-[340px]"
-            style={{ ['--d' as string]: `${i * 0.05}s`, borderTopColor: m.tag === 'welcome' ? '#B4472A' : m.tag === 'service' ? '#22382C' : '#1D1B18' }}
+            className={`tl-card tag-${m.tag ?? 'home'}`}
+            style={{ ['--n' as string]: i }}
           >
-            <p className="font-display text-5xl leading-none tracking-tight">{m.year}</p>
-            <h3 className="mt-5 text-lg font-semibold">{m.title}</h3>
-            <p className="mt-2 text-ink-soft">{m.body}</p>
+            <p className="tl-year">{m.year}</p>
+            <h3 className="tl-card-title">{m.title}</h3>
+            <p className="muted">{m.body}</p>
           </article>
         ))}
       </div>
 
-      <div className="wrap mt-4">
-        <div className="h-px w-full bg-paper-line">
-          <div className="h-px bg-clay transition-[width] duration-200" style={{ width: `${Math.max(progress, 0.06) * 100}%` }} />
+      <div className="wrap">
+        <div className="tl-progress">
+          <span style={{ width: `${Math.max(progress, 0.06) * 100}%` }} />
         </div>
       </div>
     </div>
@@ -117,20 +114,20 @@ export function About() {
         }
       />
 
-      <section id="ona" className="wrap mt-6">
-        <div className="grid gap-10 lg:grid-cols-12">
+      <section id="ona" className="wrap">
+        <div className="ona">
           <Figure
-            className="reveal lg:col-span-5"
+            className="reveal ona-media"
             src="/photos/still-speaking-banner.webp"
             alt="A rainbow banner reading “God is still speaking” hung outside the church"
             ratio="aspect-[4/5]"
           />
-          <div className="lg:col-span-7 lg:pl-8">
+          <div className="ona-text">
             <p className="eyebrow reveal">Open and Affirming since 2009</p>
             <h2 className="display-lg reveal mt-4" style={{ ['--i' as string]: 1 }}>
               If you’re LGBTQ+, this is your church too.
             </h2>
-            <div className="reveal mt-8 space-y-5 text-ink-soft" style={{ ['--i' as string]: 2 }}>
+            <div className="prose muted reveal" style={{ ['--i' as string]: 2 }}>
               <p>
                 “Open and Affirming” is the UCC’s name for congregations that publicly, officially welcome people of every sexual orientation, gender identity, and gender
                 expression. Faith voted to become one in January 2009, after a long season of listening and conversation across the whole church.
@@ -150,55 +147,55 @@ export function About() {
         </div>
       </section>
 
-      <section className="wrap mt-28 sm:mt-36">
+      <section className="wrap section">
         <SectionHead eyebrow="What we’re about" title="Four things we keep coming back to.">
           <p>Each one comes straight from our mission statement.</p>
         </SectionHead>
-        <div className="mt-14 grid border-t border-paper-line sm:grid-cols-2">
+        <div className="pillars">
           {PILLARS.map((p, i) => (
             <div
               key={p.n}
-              className={`reveal border-b border-paper-line py-10 ${i % 2 === 0 ? 'sm:pr-10' : 'sm:border-l sm:pl-10'}`}
+              className="pillar reveal"
               style={{ ['--i' as string]: i }}
             >
-              <p className="text-sm font-semibold text-clay">{p.n}</p>
-              <h3 className="display-md mt-3">{p.title}</h3>
-              <p className="mt-3 max-w-[42ch] text-ink-soft">{p.body}</p>
+              <p className="pillar-n">{p.n}</p>
+              <h3 className="display-md">{p.title}</h3>
+              <p className="muted">{p.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mt-28 bg-paper-deep py-20 sm:mt-36">
-        <div className="wrap grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <section className="band band-deep">
+        <div className="wrap firsts">
           <div className="reveal">
             <p className="eyebrow">The wider family</p>
             <h2 className="display-md mt-4 max-w-[22ch]">The United Church of Christ has a habit of going first.</h2>
           </div>
-          <ul className="grid gap-px overflow-hidden rounded-sm bg-ink/10 sm:grid-cols-3">
+          <ul className="firsts-list">
             {uccFirsts.map((f, i) => (
-              <li key={f.year} className="reveal bg-paper-deep p-6 sm:p-8" style={{ ['--i' as string]: i }}>
-                <p className="font-display text-4xl text-clay">{f.year}</p>
-                <p className="mt-3 text-ink-soft">{f.text}</p>
+              <li key={f.year} className="reveal" style={{ ['--i' as string]: i }}>
+                <p className="firsts-year">{f.year}</p>
+                <p className="muted">{f.text}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section id="pastor" className="wrap mt-28 sm:mt-36">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+      <section id="pastor" className="wrap section">
+        <div className="pastor">
+          <div className="pastor-photo">
             <div className="reveal photo aspect-[4/5] rounded-sm">
               <img src={pastor.photo} alt="Rev. Dr. Carla Cheatham" loading="lazy" className="parallax" />
             </div>
           </div>
-          <div className="lg:col-span-7">
+          <div>
             <p className="eyebrow reveal">Our pastor · since {pastor.since}</p>
             <h2 className="display-lg reveal mt-4" style={{ ['--i' as string]: 1 }}>
               {pastor.name}
             </h2>
-            <div className="mt-8 space-y-5 text-ink-soft">
+            <div className="prose muted">
               {pastor.bio.map((p, i) => (
                 <p key={i} className="reveal" style={{ ['--i' as string]: i + 2 }}>
                   {p}
@@ -212,7 +209,7 @@ export function About() {
         </div>
       </section>
 
-      <section id="history" className="mt-28 sm:mt-36">
+      <section id="history" className="section">
         <div className="wrap">
           <SectionHead eyebrow="Our story" title="Sixty years, one cross, a lot of casseroles.">
             <p>
@@ -222,7 +219,7 @@ export function About() {
           </SectionHead>
         </div>
         <Timeline />
-        <div className="wrap mt-16">
+        <div className="wrap tl-photo">
           <Figure
             className="reveal"
             src="/photos/building.webp"

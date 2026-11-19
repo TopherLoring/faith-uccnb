@@ -18,7 +18,7 @@ export function Visit() {
         title={<Lines lines={['Your first', <em key="s" className="font-light italic text-clay">Sunday.</em>]} />}
         lede="Walking into a new church can be a lot. Here’s exactly what to expect, so the only surprise is how glad we are you came."
       >
-        <div className="fade-in mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-paper-line pt-6" style={{ ['--d' as string]: '0.8s' }}>
+        <div className="intro-meta fade-in" style={{ ['--d' as string]: '0.8s' }}>
           <SundayStatus />
           <a href={church.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold">
             <span className="link-underline">{church.addressLine}</span>
@@ -37,34 +37,34 @@ export function Visit() {
         />
       </section>
 
-      <section className="wrap mt-28">
+      <section className="wrap section">
         <SectionHead eyebrow="Sunday morning" title="How the morning goes.">
           <p>Worship runs from 10:00 to 11:20. Nobody will single you out, and nobody will mind if you just watch.</p>
         </SectionHead>
-        <ol className="mt-14 border-t border-paper-line">
+        <ol className="timeline-list">
           {MORNING.map((m, i) => (
-            <li key={m.title} className="reveal grid gap-3 border-b border-paper-line py-7 sm:grid-cols-[9rem_1fr_1.4fr] sm:gap-8" style={{ ['--i' as string]: i }}>
-              <p className="font-display text-3xl text-clay">{m.time}</p>
-              <p className="text-xl font-semibold">{m.title}</p>
-              <p className="text-ink-soft">{m.body}</p>
+            <li key={m.title} className="tl-row reveal" style={{ ['--i' as string]: i }}>
+              <p className="tl-time">{m.time}</p>
+              <p className="tl-title">{m.title}</p>
+              <p className="muted">{m.body}</p>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className="mt-28 bg-moss py-24 text-paper">
-        <div className="wrap grid items-center gap-12 lg:grid-cols-2">
+      <section className="band band-moss">
+        <div className="wrap split">
           <div className="reveal">
-            <p className="eyebrow !text-ribbon-yellow">Not ready to walk in?</p>
-            <h2 className="display-lg mt-4">Watch from your couch first.</h2>
-            <p className="lede mt-6 max-w-[38ch] !text-paper/80">
+            <p className="eyebrow eyebrow-light">Not ready to walk in?</p>
+            <h2 className="display-lg">Watch from your couch first.</h2>
+            <p className="lede lede-light">
               Every Sunday service streams live on Zoom. Camera off, pajamas on, no one will ask you to introduce yourself.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href={church.zoomUrl} target="_blank" rel="noopener noreferrer" className="btn bg-paper text-moss hover:bg-ribbon-yellow">
+            <div className="btn-row">
+              <a href={church.zoomUrl} target="_blank" rel="noopener noreferrer" className="btn btn-paper">
                 Open the Zoom link <Arrow />
               </a>
-              <span className="text-sm text-paper/70">Meeting ID {church.zoomMeetingId}</span>
+              <span className="small light-muted">Meeting ID {church.zoomMeetingId}</span>
             </div>
           </div>
           <Figure
@@ -76,9 +76,9 @@ export function Visit() {
         </div>
       </section>
 
-      <section className="wrap mt-28">
+      <section className="wrap section">
         <SectionHead eyebrow="Questions people ask" title="The honest answers." />
-        <div className="mt-10 border-t border-paper-line">
+        <div className="accordion-list">
           {faqs.map((f) => (
             <Accordion key={f.q} q={f.q}>
               {f.a}
@@ -87,12 +87,12 @@ export function Visit() {
         </div>
       </section>
 
-      <section id="directions" className="wrap mt-28">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <section id="directions" className="wrap section">
+        <div className="directions">
           <div className="reveal">
             <p className="eyebrow">Getting here</p>
             <h2 className="display-lg mt-4">970 Loop 337.</h2>
-            <address className="mt-6 space-y-2 not-italic text-ink-soft">
+            <address className="directions-addr muted">
               <p>New Braunfels, TX 78130</p>
               <p>
                 <a href={church.phoneHref} className="link-underline">{church.phone}</a>
@@ -101,24 +101,24 @@ export function Visit() {
                 <a href={`mailto:${church.email}`} className="link-underline break-all">{church.email}</a>
               </p>
             </address>
-            <a href={church.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-primary mt-8">
+            <a href={church.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               Get directions <Arrow />
             </a>
             <Figure
-              className="mt-10"
+              className="directions-photo"
               src="/photos/still-speaking-banner.webp"
               alt="The church building with a rainbow “God is still speaking” banner out front"
               ratio="aspect-[4/3]"
               caption="Look for the rainbow banner."
             />
           </div>
-          <div className="reveal photo min-h-[420px] rounded-sm" style={{ ['--i' as string]: 1 }}>
+          <div className="map photo reveal" style={{ ['--i' as string]: 1 }}>
             <iframe
               title="Map to Faith United Church of Christ"
               src={church.mapsEmbed}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="h-full min-h-[420px] w-full border-0 grayscale-[35%] sepia-[15%]"
+              className="h-full min-h-[420px] w-full border-0"
             />
           </div>
         </div>
