@@ -4,17 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: { DEFAULT: '#F5EFE6', deep: '#EDE4D6', line: '#DDD1BF' },
-        ink: { DEFAULT: '#1D1B18', soft: '#4A453E', mute: '#6E675D' },
-        clay: { DEFAULT: '#B4472A', dark: '#8F3720', light: '#F0D6C9' },
-        moss: { DEFAULT: '#22382C', light: '#DCE5DD' },
+        paper: { DEFAULT: '#FFFFFF', deep: '#EAEAEA', line: '#DCDCDC' },
+        ink: { DEFAULT: '#2E2E2E', soft: '#585858', mute: '#666666' },
+        clay: { DEFAULT: '#3E7443', dark: '#335B38', light: '#DCE9DD' },
+        moss: { DEFAULT: '#00729A', light: '#DCECF1' },
+        blue: { DEFAULT: '#00729A', logo: '#007FAC' },
         ribbon: {
-          red: '#D9483B',
-          orange: '#E8873A',
-          yellow: '#E7BC3F',
-          green: '#4C9459',
-          blue: '#3C6DB0',
-          violet: '#7A4E9F',
+          red: '#E22726',
+          orange: '#F7A660',
+          yellow: '#FFDE16',
+          green: '#5AA761',
+          blue: '#007FAC',
+          violet: '#7A3C87',
         },
       },
       fontFamily: {

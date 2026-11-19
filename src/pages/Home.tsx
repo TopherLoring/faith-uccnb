@@ -1,4 +1,5 @@
 import { church, partners } from '../data/site';
+import { MapPin } from 'lucide-react';
 import { href } from '../lib/router';
 import { formatDay, upcomingMonthly } from '../lib/schedule';
 import { Arrow, Figure, Lines, SectionHead } from '../components/Bits';
@@ -28,19 +29,19 @@ export function Home() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="relative pt-28 sm:pt-32">
-        <div className="wrap grid items-end gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
-          <div className="relative z-10 pb-4 lg:pb-16">
+      <section className="hero">
+        <div className="wrap hero-grid">
+          <div className="hero-copy relative z-10 pb-4">
             <p className="eyebrow fade-in" style={{ ['--d' as string]: '0.05s' }}>
               New Braunfels, Texas · Since 1966
             </p>
             <h1 className="display-xl mt-5">
               <Lines lines={['Come as', 'you are.', <em key="q" className="font-light italic text-clay">Bring your</em>, <em key="q2" className="font-light italic text-clay">questions.</em>]} />
             </h1>
-            <p className="lede fade-in mt-8 max-w-[34ch]" style={{ ['--d' as string]: '0.75s' }}>
+            <p className="lede hero-lede fade-in" style={{ ['--d' as string]: '0.75s' }}>
               Faith is a progressive, Open and Affirming church on Loop 337. Every person, every family, every honest doubt has a seat here.
             </p>
-            <div className="fade-in mt-9 flex flex-wrap items-center gap-3" style={{ ['--d' as string]: '0.95s' }}>
+            <div className="btn-row fade-in" style={{ ['--d' as string]: '0.95s' }}>
               <a href={href('visit')} className="btn-primary">
                 Plan your first Sunday <Arrow />
               </a>
@@ -48,41 +49,48 @@ export function Home() {
                 Watch on Zoom
               </a>
             </div>
-            <div className="fade-in mt-8" style={{ ['--d' as string]: '1.1s' }}>
+            <div className="hero-status fade-in" style={{ ['--d' as string]: '1.1s' }}>
               <SundayStatus />
+              <a className="hero-chip" href={church.mapsUrl} target="_blank" rel="noopener noreferrer">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                <span>{church.address.street}, {church.address.city}</span>
+              </a>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="hero-photo photo aspect-[4/5] rounded-sm sm:aspect-[5/4] lg:aspect-[4/5]">
+          <div className="hero-media">
+            <div className="hero-photo photo">
               <img
                 src="/photos/choir.webp"
                 alt="Faith's sanctuary on a Sunday, with rainbow ribbons strung across the wooden rafters and the choir singing at the front"
                 fetchPriority="high"
               />
             </div>
-            <p className="fade-in mt-3 text-sm text-ink-mute" style={{ ['--d' as string]: '1.3s' }}>
+            <p className="caption fade-in" style={{ ['--d' as string]: '1.3s' }}>
               Sunday morning in the sanctuary. The ribbons are ours.
             </p>
           </div>
         </div>
-        <Ribbons className="pointer-events-none relative -mt-6 h-24 w-full sm:-mt-10 sm:h-36" sag={0.7} />
+        <Ribbons className="hero-ribbons" sag={0.7} />
       </section>
 
       {/* ---------------- Values marquee ---------------- */}
-      <div className="marquee overflow-hidden border-y border-paper-line py-5" aria-hidden="true">
-        <div className="marquee-track flex w-max gap-12 whitespace-nowrap">
+      <div className="marquee-wrap" aria-hidden="true">
+        <p className="marquee-label">Be the<br />Church</p>
+        <div className="marquee">
+          <div className="marquee-track">
           {[...VALUES, ...VALUES].map((v, i) => (
-            <span key={i} className="flex items-center gap-12 font-display text-2xl italic text-ink-soft sm:text-3xl">
+            <span key={i} className="marquee-item">
               {v}
-              <span className="text-clay">,</span>
+              <span className="marquee-dot" />
             </span>
           ))}
+          </div>
         </div>
       </div>
 
       {/* ---------------- Track record ---------------- */}
-      <section className="wrap mt-28 sm:mt-36">
+      <section className="wrap section">
         <SectionHead eyebrow="Not a slogan. A record." title={<>We were saying yes before it was easy.</>}>
           <p>
             Lots of churches say “all are welcome.” Here’s what it’s looked like at Faith: blessing same-sex couples in 2002, voting to become Open and
@@ -93,31 +101,31 @@ export function Home() {
           </a>
         </SectionHead>
 
-        <dl className="mt-16 grid grid-cols-2 border-t border-paper-line lg:grid-cols-4">
+        <dl className="stats">
           {RECORD.map((r, i) => (
             <div
               key={r.figure}
-              className={`reveal border-b border-paper-line py-8 pr-6 lg:border-b-0 ${i % 2 === 1 ? 'pl-6 border-l' : ''} ${i > 0 ? 'lg:border-l lg:pl-8' : ''}`}
+              className="stat reveal"
               style={{ ['--i' as string]: i }}
             >
-              <dt className="font-display text-[clamp(2.4rem,4.5vw,4rem)] leading-none tracking-tight text-clay">{r.figure}</dt>
-              <dd className="mt-3 max-w-[20ch] text-sm text-ink-soft">{r.label}</dd>
+              <dt>{r.figure}</dt>
+              <dd>{r.label}</dd>
             </div>
           ))}
         </dl>
       </section>
 
       {/* ---------------- Photo spread ---------------- */}
-      <section className="wrap mt-28 sm:mt-36">
-        <div className="grid gap-5 md:grid-cols-12">
+      <section className="wrap section">
+        <div className="spread">
           <Figure
-            className="reveal md:col-span-7"
+            className="reveal spread-main"
             src="/photos/clergy.webp"
             alt="Clergy in rainbow stoles gathered around the communion table with members of the congregation"
             caption="Clergy and friends around the table."
             ratio="aspect-[5/4]"
           />
-          <div className="grid gap-5 md:col-span-5">
+          <div className="spread-side">
             <Figure
               className="reveal"
               src="/photos/childrens-sermon.webp"
@@ -125,18 +133,18 @@ export function Home() {
               caption="The children’s message."
               ratio="aspect-[4/3]"
             />
-            <div className="reveal rounded-sm bg-clay p-8 text-paper" style={{ ['--i' as string]: 1 }}>
-              <p className="font-display text-2xl leading-snug sm:text-3xl">“{church.missionCore}”</p>
-              <p className="mt-4 text-sm text-paper/80">Our mission statement, minus the name.</p>
-            </div>
+            <blockquote className="mission reveal" style={{ ['--i' as string]: 1 }}>
+              <p>“{church.missionCore}”</p>
+              <cite>Our mission statement, minus the name.</cite>
+            </blockquote>
           </div>
         </div>
       </section>
 
       {/* ---------------- Find your way in ---------------- */}
-      <section className="wrap mt-28 sm:mt-36">
+      <section className="wrap section">
         <SectionHead eyebrow="Start anywhere" title="However you got here, there’s a way in." />
-        <div className="mt-14 grid border-t border-paper-line md:grid-cols-2">
+        <div className="ways">
           {[
             { to: href('visit'), k: 'Thinking about visiting?', v: 'What Sunday’s like, what to wear, where the kids go.' },
             { to: href('about'), k: 'Burned by church before?', v: 'What Open and Affirming means here, and what we believe.' },
@@ -146,14 +154,14 @@ export function Home() {
             <a
               key={x.k}
               href={x.to}
-              className={`reveal group flex items-start justify-between gap-6 border-b border-paper-line py-8 md:py-10 ${i % 2 === 0 ? 'md:pr-10' : 'md:border-l md:pl-10'}`}
+              className="way reveal group"
               style={{ ['--i' as string]: i }}
             >
               <div>
-                <p className="display-md transition-colors duration-300 group-hover:text-clay">{x.k}</p>
-                <p className="mt-2 text-ink-soft">{x.v}</p>
+                <p className="display-md way-title">{x.k}</p>
+                <p className="muted">{x.v}</p>
               </div>
-              <span className="mt-1 grid h-11 w-11 shrink-0 place-items-center rounded-full border border-ink/20 transition-all duration-300 group-hover:border-clay group-hover:bg-clay group-hover:text-paper">
+              <span className="circle-btn circle-btn-lg">
                 <Arrow />
               </span>
             </a>
@@ -162,28 +170,28 @@ export function Home() {
       </section>
 
       {/* ---------------- Coming up ---------------- */}
-      <section className="mt-28 bg-paper-deep py-24 sm:mt-36">
-        <div className="wrap grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="band band-deep">
+        <div className="wrap band-grid">
           <div className="reveal">
             <p className="eyebrow">Coming up</p>
-            <h2 className="display-lg mt-4">Sunday is just the start.</h2>
-            <p className="lede mt-6 max-w-[36ch]">
+            <h2 className="display-lg">Sunday is just the start.</h2>
+            <p className="lede">
               Every week there’s worship, Sunday school, and book group. Every month there’s more.
             </p>
-            <a href={href('community', 'gatherings')} className="btn-ghost mt-8">
+            <a href={href('community', 'gatherings')} className="btn btn-ghost">
               Everything we do <Arrow />
             </a>
           </div>
-          <ol className="border-t border-ink/15">
+          <ol className="date-list">
             {upcoming.map((u, i) => (
-              <li key={u.gathering.id} className="reveal grid grid-cols-[5.5rem_1fr] gap-6 border-b border-ink/15 py-6" style={{ ['--i' as string]: i }}>
+              <li key={u.gathering.id} className="date-row reveal" style={{ ['--i' as string]: i }}>
                 <div>
-                  <p className="font-display text-4xl leading-none">{formatDay(u.date, { day: 'numeric' })}</p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-ink-mute">{formatDay(u.date, { month: 'short', weekday: 'short' })}</p>
+                  <p className="date-day">{formatDay(u.date, { day: 'numeric' })}</p>
+                  <p className="date-mon">{formatDay(u.date, { month: 'short', weekday: 'short' })}</p>
                 </div>
                 <div>
-                  <p className="text-lg font-semibold">{u.gathering.title}</p>
-                  <p className="mt-1 text-ink-soft">{u.gathering.blurb}</p>
+                  <p className="date-title">{u.gathering.title}</p>
+                  <p className="muted">{u.gathering.blurb}</p>
                 </div>
               </li>
             ))}
@@ -192,28 +200,28 @@ export function Home() {
       </section>
 
       {/* ---------------- Out in town ---------------- */}
-      <section className="wrap mt-28 sm:mt-36">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section className="wrap section">
+        <div className="split">
           <Figure
-            className="reveal order-2 lg:order-1"
+            className="reveal split-media"
             src="/photos/big-serve-crowd.webp"
             alt="A crowd of volunteers in matching shirts gathered inside a food bank warehouse"
             caption="Volunteers at a Big Serve NB day."
             ratio="aspect-[4/3]"
           />
-          <div className="order-1 lg:order-2">
+          <div>
             <p className="eyebrow reveal">Love is a verb</p>
             <h2 className="display-lg reveal mt-4" style={{ ['--i' as string]: 1 }}>
               Faith happens on Loop 337. It doesn’t stay there.
             </h2>
-            <ul className="mt-8 flex flex-wrap gap-2">
+            <ul className="pills">
               {partners.map((p, i) => (
-                <li key={p.id} className="reveal rounded-full border border-ink/20 px-4 py-2 text-sm font-medium" style={{ ['--i' as string]: i + 2 }}>
+                <li key={p.id} className="pill reveal" style={{ ['--i' as string]: i + 2 }}>
                   {p.name}
                 </li>
               ))}
             </ul>
-            <a href={href('community')} className="btn-primary reveal mt-9" style={{ ['--i' as string]: 3 }}>
+            <a href={href('community')} className="btn btn-primary reveal" style={{ ['--i' as string]: 3 }}>
               See what we’re part of <Arrow />
             </a>
           </div>
@@ -221,8 +229,8 @@ export function Home() {
       </section>
 
       {/* ---------------- Pastor note ---------------- */}
-      <section className="wrap mt-28 sm:mt-36">
-        <div className="grid items-center gap-10 border-y border-paper-line py-14 md:grid-cols-[minmax(0,280px)_1fr] md:gap-16">
+      <section className="wrap section">
+        <div className="pastor-note">
           <Figure
             className="reveal"
             src="/photos/pastor-carla.webp"

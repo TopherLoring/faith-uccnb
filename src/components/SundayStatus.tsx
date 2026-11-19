@@ -14,8 +14,7 @@ function useWorshipStatus(): WorshipStatus {
 /** One line that always answers "when's the next service, and can I join it now?" */
 export function SundayStatus({ tone = 'dark', compact = false }: { tone?: 'dark' | 'light'; compact?: boolean }) {
   const s = useWorshipStatus();
-  const text = tone === 'dark' ? 'text-ink' : 'text-paper';
-  const mute = tone === 'dark' ? 'text-ink-mute' : 'text-paper/70';
+  const toneClass = tone === 'light' ? ' is-light' : '';
 
   if (s.state === 'live' || s.state === 'soon') {
     return (
@@ -23,9 +22,9 @@ export function SundayStatus({ tone = 'dark', compact = false }: { tone?: 'dark'
         href={church.zoomUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className={`inline-flex items-center gap-2.5 text-sm font-semibold ${text} group`}
+        className={`sunday-status ss-live${toneClass}`}
       >
-        <span className="live-dot inline-block h-2 w-2 rounded-full bg-ribbon-red text-ribbon-red" />
+        <span className="live-dot" />
         <span className="link-underline">
           {s.state === 'live' ? 'Worship is live now. Join on Zoom' : `Worship starts in ${s.minutes} min. Join on Zoom`}
         </span>
@@ -35,13 +34,11 @@ export function SundayStatus({ tone = 'dark', compact = false }: { tone?: 'dark'
 
   const day = s.isToday ? 'Today' : formatDay(s.date, { weekday: 'long', month: 'short', day: 'numeric' });
   return (
-    <span className={`inline-flex flex-wrap items-baseline gap-x-2 text-sm ${text}`}>
-      <span className="font-semibold">
-        {s.isToday ? 'Today' : 'This Sunday'}
-        {!compact && !s.isToday && <span className={`font-normal ${mute}`}> · {day.replace('Sunday, ', '')}</span>}
-      </span>
-      <span className={mute}>10 a.m.{compact ? '' : ' · In person & on Zoom'}</span>
-      {s.isCommunion && !compact && <span className="text-clay font-semibold">· Communion Sunday</span>}
+    <span className={`sunday-status${toneClass}`}>
+      <span className="ss-day">{s.isToday ? 'Today' : 'This Sunday'}</span>
+      {!compact && !s.isToday && <span className="ss-meta">· {day.replace('Sunday, ', '')}</span>}
+      <span className="ss-meta">10 a.m.{compact ? '' : ' · In person & on Zoom'}</span>
+      {s.isCommunion && !compact && <span className="ss-communion">· Communion Sunday</span>}
     </span>
   );
 }
